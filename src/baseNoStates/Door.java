@@ -35,6 +35,13 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
+        /*
+        Added this if statement
+         */
+        if (locked.equals("locked")) {
+          break;
+        }
+
         if (closed) {
           closed = false;
         } else {
@@ -56,6 +63,7 @@ public class Door {
           System.out.println("Can't lock door " + id + " because it is open.");
         } else {
           setStateName("locked");
+          closed = true;
         }
         break;
       case Actions.UNLOCK:
@@ -64,6 +72,7 @@ public class Door {
           System.out.println("Can't unlock door " + id + " because it is open.");
         } else {
           setStateName("unlocked");
+          closed = true;
         }
         break;
       case Actions.UNLOCK_SHORTLY:
