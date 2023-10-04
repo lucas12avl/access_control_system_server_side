@@ -8,9 +8,16 @@ public class Door {
   private final String id;
   private boolean closed; // physically
 
+  // Added locked value
+  private String locked;
+
   public Door(String id) {
     this.id = id;
     closed = true;
+    /*
+    Added locked value to door
+     */
+    locked = "locked";
   }
 
   public void processRequest(RequestReader request) {
@@ -28,6 +35,13 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
+        /*
+        Added this if statement
+         */
+        if (locked.equals("locked")) {
+          break;
+        }
+
         if (closed) {
           closed = false;
         } else {
@@ -47,12 +61,18 @@ public class Door {
         // TODO
         if (!closed) {
           System.out.println("Can't lock door " + id + " because it is open.");
+        } else {
+          setStateName("locked");
+          closed = true;
         }
         break;
       case Actions.UNLOCK:
         // TODO
         if (!closed) {
           System.out.println("Can't unlock door " + id + " because it is open.");
+        } else {
+          setStateName("unlocked");
+          closed = true;
         }
         break;
       case Actions.UNLOCK_SHORTLY:
@@ -74,7 +94,11 @@ public class Door {
   }
 
   public String getStateName() {
-    return "unlocked";
+    return locked;
+  }
+
+  public void setStateName(String name) {
+    this.locked = name;
   }
 
   @Override
