@@ -7,6 +7,7 @@ public class Main {
   public static void main(String[] args) {
     DirectoryDoors.makeDoors();
     DirectoryUsers.makeUsers();
+   DirectoryAreas.makeAreas(); // tenemos que crear las diferentes areas y particiones
     new WebServer();
   }
 }

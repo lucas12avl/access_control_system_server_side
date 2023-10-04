@@ -8,16 +8,26 @@ public class Door {
   private final String id;
   private boolean closed; // physically
 
+  //añadimos dos variables privadas to y from, que indican que la puerta va de un 'space' a otro,
+  // 'from' es l 'space donde se encuentra el sensor
+  private final String from;
+  private final String to;
+
+
   // Added locked value
   private String locked;
 
-  public Door(String id) {
+  public Door(String id, String desde, String hacia) {
     this.id = id;
     closed = true;
     /*
     Added locked value to door
      */
     locked = "locked";
+
+     this.from = desde;
+     this.to = hacia;
+
   }
 
   public void processRequest(RequestReader request) {
@@ -95,6 +105,14 @@ public class Door {
 
   public String getStateName() {
     return locked;
+  }
+
+  public String getFrom() {
+    return from;
+  }
+// necesitamos saber de donde a donde llevan las puertas
+  public String getTo() {
+    return to;
   }
 
   public void setStateName(String name) {
