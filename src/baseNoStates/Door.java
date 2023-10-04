@@ -31,22 +31,30 @@ public class Door {
         if (closed) {
           closed = false;
         } else {
-          System.out.println("Can't open door " + id + " because it's already open");
+          System.out.println("Can't open door " + id + " because it's already "
+                  + "open");
         }
         break;
       case Actions.CLOSE:
         if (closed) {
-          System.out.println("Can't close door " + id + " because it's already closed");
+          System.out.println("Can't close door " + id + " because it's already "
+                  + "closed");
         } else {
           closed = true;
         }
         break;
       case Actions.LOCK:
         // TODO
-        // fall through
+        if (!closed) {
+          System.out.println("Can't lock door " + id + " because it is open.");
+        }
+        break;
       case Actions.UNLOCK:
         // TODO
-        // fall through
+        if (!closed) {
+          System.out.println("Can't unlock door " + id + " because it is open.");
+        }
+        break;
       case Actions.UNLOCK_SHORTLY:
         // TODO
         System.out.println("Action " + action + " not implemented yet");
