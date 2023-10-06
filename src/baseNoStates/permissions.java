@@ -8,7 +8,6 @@ public class permissions { //clase que incicará las acciones que puede hacer ca
   //space(tiene doors) y partition dentro de area, son clases derivadas
   //directory doors --> acceso a todas las puertas
   //directory areas --> all tree de areas
-
-
+ //mirar el string alldoors
 
 }
