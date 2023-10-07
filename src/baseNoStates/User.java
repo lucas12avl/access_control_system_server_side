@@ -1,5 +1,5 @@
 package baseNoStates;
-class rol{ //variables globales para cada tipo de user
+class rol{ //variables globales para cada tipo de user de tipo numerico
   static final int none = 0;
   static final int employee = 1;
   static final int manager = 2;
