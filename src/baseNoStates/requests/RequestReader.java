@@ -95,9 +95,22 @@ public class RequestReader implements Request {
       authorized = false;
       addReason("user doesn't exists");
     } else {
+      switch (user.getRole()){
+        case 0: //blank case --> no permissions
+          authorized = false;
+          addReason("User has not the right permissions");
+        case 1: //employees --> all perms in actions
+
+        case 2: //manages --> all perms in actions + zones
+         // if(now.isBefore()){}
+        case 3://admin  --> all perms
+          authorized = true;
+        default:
+          authorized = false;
+      }
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
-      authorized = true;
+
     }
   }
 }

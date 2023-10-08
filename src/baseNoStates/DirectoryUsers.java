@@ -13,8 +13,8 @@ public final class DirectoryUsers {
     // this is to withdraw all permissions but still to keep user data to give back
     // permissions later
     // rol NONE significa que sólo guardamos los datos y no tienen permisos
-    users.add(new User("Bernat", "12345", rol.none));
-    users.add(new User("Blai", "77532", rol.none));
+    users.add(new User("Bernat", "12345", rol.blank));
+    users.add(new User("Blai", "77532", rol.blank));
 
     // employees :
     // Sep. 1 2023 to Mar. 1 2024
