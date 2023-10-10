@@ -1,10 +1,16 @@
 package baseNoStates;
+
+import java.time.LocalTime;
+
 class rol{ //variables globales para cada tipo de user de tipo numerico
   static final int blank = 0;
   static final int employee = 1;
+
   static final int manager = 2;
   static final int admin = 3;
 }
+
+
 
 public class User {
   private final String name;

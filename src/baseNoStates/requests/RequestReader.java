@@ -5,10 +5,16 @@ import baseNoStates.DirectoryUsers;
 import baseNoStates.Door;
 import baseNoStates.User;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+class timeTable{
+  static LocalDateTime employeeTimeFrom = LocalDateTime.of(2023,9,1,9,0,0);
+  static LocalDateTime employeeTimeTo = LocalDateTime.of(2024,3,1,17,0,0);
+}
 
 public class RequestReader implements Request {
   private final String credential; // who
@@ -100,9 +106,18 @@ public class RequestReader implements Request {
           authorized = false;
           addReason("User has not the right permissions");
         case 1: //employees --> all perms in actions
+          if(now.isBefore(timeTable.employeeTimeFrom)) {
+            authorized = false;
+          } else if (now.isAfter(timeTable.employeeTimeTo)) {
+            authorized = false;
 
+          }else {
+            authorized = true;
+          }
         case 2: //manages --> all perms in actions + zones
-         // if(now.isBefore()){}
+          if(now.isBefore(timeTable.employeeTime1)){
+
+          }
         case 3://admin  --> all perms
           authorized = true;
         default:
