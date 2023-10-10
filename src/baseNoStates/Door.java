@@ -1,5 +1,7 @@
 package baseNoStates;
 
+import baseNoStates.doorstates.DoorState;
+import baseNoStates.doorstates.Locked;
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
@@ -8,16 +10,10 @@ public class Door {
   private final String id;
   private boolean closed; // physically
 
-  // Added locked value
-  private String locked;
-
+  DoorState doorState;
   public Door(String id) {
     this.id = id;
     closed = true;
-    /*
-    Added locked value to door
-     */
-    locked = "locked";
   }
 
   public void processRequest(RequestReader request) {
@@ -45,9 +41,6 @@ public class Door {
               acción.
              Si locked == false se abre la puerta.
          */
-        if (locked.equals("locked")) {
-          break;
-        }
 
         if (closed) {
           closed = false;
@@ -76,12 +69,8 @@ public class Door {
           Si la puerta está cerrada el estado cambia a "locked" mediante el
             setter setStateName.
          */
-        if (!closed) {
-          System.out.println("Can't lock door " + id + " because it is open.");
-        } else {
-          setStateName("locked");
-          closed = true;
-        }
+        Locked locked1 = new Locked(this);
+        locked1.lock();
         break;
       case Actions.UNLOCK:
         /*
@@ -91,12 +80,6 @@ public class Door {
           En caso de no estar abierta setStateName cambia el estado de la
             puerta a "unlocked".
          */
-        if (!closed) {
-          System.out.println("Can't unlock door " + id + " because it is open.");
-        } else {
-          setStateName("unlocked");
-          closed = true;
-        }
         break;
       case Actions.UNLOCK_SHORTLY:
         /* TODO Implementar la acción UNLOCK_SHORTLY
@@ -119,12 +102,15 @@ public class Door {
             De los logs: eso *parece* estructura json, no?
             created request reader Request{credential=11343, userName=unknown, action=unlock_shortly, now=2023-10-04T09:30, doorID=D1, closed=false, authorized=false, reasons=[]}
          */
+        /*
         if (!closed) {
           System.out.println("Can't unlock door " + id + " because it is open.");
         } else {
           setStateName("unlocked");
           closed = true;
         }
+
+         */
 
         break;
       default:
@@ -142,11 +128,11 @@ public class Door {
   }
 
   public String getStateName() {
-    return locked;
+    return "unlocked";
   }
 
-  public void setStateName(String name) {
-    this.locked = name;
+  public void setStateName(DoorState door) {
+     doorState = door;
   }
 
   @Override
