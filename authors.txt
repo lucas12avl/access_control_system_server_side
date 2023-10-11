@@ -4,3 +4,12 @@ Lucas Dalmau Garces NIU 1636290
 
 // PONER AQUI QUE PARTES ESPECIFICAS A HECHO CADA UNO
 
+Guillem:
+I implemented the initial version of the doAction method, specifically a
+    rewrite of the Actions.OPEN section, the implementation of Actions.LOCK,
+    Actions.UNLOCK and Actions.UNLOCK_SHORTLY sections.
+A new variable String variable named "locked" was created, that indicated
+    the current status of the selected door, as in if it was locked or
+    unlocked.
+This new variable was added inside the Door constructor with all doors starting
+    with value "locked".
