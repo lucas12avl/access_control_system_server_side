@@ -108,16 +108,11 @@ public class RequestReader implements Request {
         case 1: //employees --> all perms in actions
           if(now.isBefore(timeTable.employeeTimeFrom)) {
             authorized = false;
-          } else if (now.isAfter(timeTable.employeeTimeTo)) {
-            authorized = false;
-
-          }else {
-            authorized = true;
-          }
+          } else authorized = !now.isAfter(timeTable.employeeTimeTo);
         case 2: //manages --> all perms in actions + zones
-          if(now.isBefore(timeTable.employeeTime1)){
+         // if(now.isBefore(timeTable.employeeTime1)){
 
-          }
+         // }
         case 3://admin  --> all perms
           authorized = true;
         default:
