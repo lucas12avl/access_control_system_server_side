@@ -6,7 +6,7 @@ public class Locked extends DoorState{
 
     public Locked(Door door) {
         super(door);
-        name = States.LOCKED;
+        this.setStateName(States.LOCKED);
     }
 
     @Override
@@ -32,6 +32,9 @@ public class Locked extends DoorState{
 
     @Override
     public void unlock() {
-        door.setStateName(new Unlocked(door));
+        door.setState(new Unlocked(door));
     }
+
+    @Override
+    public String getState() { return States.LOCKED; }
 }

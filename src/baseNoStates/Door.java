@@ -2,6 +2,7 @@ package baseNoStates;
 
 import baseNoStates.doorstates.DoorState;
 import baseNoStates.doorstates.Locked;
+import baseNoStates.doorstates.Unlocked;
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
@@ -10,10 +11,11 @@ public class Door {
   private final String id;
   private boolean closed; // physically
 
-  DoorState doorState;
+  DoorState currentState;
   public Door(String id) {
     this.id = id;
     closed = true;
+    currentState = new Unlocked(this);
   }
 
   public void processRequest(RequestReader request) {
@@ -35,19 +37,7 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        /*
-            Esta acción inicialmente comprueba si está bloqueada o no.
-            En caso de estar bloqueada indicará que está bloqueada y parará la
-              acción.
-             Si locked == false se abre la puerta.
-         */
-
-        if (closed) {
-          closed = false;
-        } else {
-          System.out.println("Can't open door " + id + " because it's already "
-                  + "open");
-        }
+        currentState.open();
         break;
       case Actions.CLOSE:
         /*
@@ -55,12 +45,7 @@ public class Door {
             terminal.
           Si no está cerrada closed = true;
          */
-        if (closed) {
-          System.out.println("Can't close door " + id + " because it's already "
-                  + "closed");
-        } else {
-          closed = true;
-        }
+        currentState.close();
         break;
       case Actions.LOCK:
         /*
@@ -69,8 +54,7 @@ public class Door {
           Si la puerta está cerrada el estado cambia a "locked" mediante el
             setter setStateName.
          */
-        Locked locked1 = new Locked(this);
-        locked1.lock();
+        currentState.lock();
         break;
       case Actions.UNLOCK:
         /*
@@ -80,6 +64,7 @@ public class Door {
           En caso de no estar abierta setStateName cambia el estado de la
             puerta a "unlocked".
          */
+        currentState.unlock();
         break;
       case Actions.UNLOCK_SHORTLY:
         /* TODO Implementar la acción UNLOCK_SHORTLY
@@ -123,16 +108,24 @@ public class Door {
     return closed;
   }
 
+  public void setClosed(boolean close) {
+    closed = close;
+  }
+
   public String getId() {
     return id;
   }
 
   public String getStateName() {
-    return "unlocked";
+    return currentState.getState();
   }
 
   public void setStateName(DoorState door) {
-     doorState = door;
+     this.currentState = door;
+  }
+
+  public void setState (DoorState newState) {
+    currentState = newState;
   }
 
   @Override

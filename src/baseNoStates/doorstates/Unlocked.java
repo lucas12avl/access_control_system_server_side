@@ -5,26 +5,39 @@ import baseNoStates.Door;
 public class Unlocked extends DoorState{
     public Unlocked(Door door) {
         super(door);
-        name = States.UNLOCKED;
+        this.setStateName(States.UNLOCKED);
     }
 
     @Override
     public void open() {
-        /*super(door);*/
+        if (this.door.isClosed()) {
+            this.door.setClosed(false);
+        } else {
+            System.out.println("Can't open door " + this.door.getId() + " because it's already "
+                    + "open");
+        }
     }
 
     @Override
     public void close() {
-        System.out.println("Door is already closed.");
+        if (this.door.isClosed()) {
+            System.out.println("Can't close door " + door.getId() + " because it's already "
+                    + "closed");
+        } else {
+            this.door.setClosed(true);
+        }
     }
 
     @Override
     public void lock() {
-        door.setStateName(new Locked(door));
+        door.setState(new Locked(door));
     }
 
     @Override
     public void unlock() {
-        System.out.println("Door is already unlocked.");
+        door.setState(new Unlocked(door));
     }
+
+    @Override
+    public String getState() {return States.UNLOCKED;}
 }

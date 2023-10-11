@@ -52,4 +52,12 @@ public abstract class DoorState {
 
          */
 
+    public void setStateName(String nouEstat) {
+        this.name = nouEstat;
+    }
+
+    public String getState() {
+        return States.UNLOCKED;
+    }
+
 }
