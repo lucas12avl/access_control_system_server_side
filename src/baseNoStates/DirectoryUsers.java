@@ -2,7 +2,7 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
-public final class DirectoryUsers {
+public final class  DirectoryUsers {
   private static final ArrayList<User> users = new ArrayList<>();
 
   public static void makeUsers() {
