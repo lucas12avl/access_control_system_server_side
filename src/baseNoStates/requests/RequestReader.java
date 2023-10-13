@@ -116,7 +116,7 @@ public class RequestReader implements Request {
         case 3://admin  --> all perms
           authorized = true;
         default:
-          authorized = false;
+          authorized = true; //MODIFICADO PARA PROBAR QUE FUNCIONEN LAS AREAS, ANTES ERA FALSE
       }
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
