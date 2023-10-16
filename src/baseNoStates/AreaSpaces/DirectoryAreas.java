@@ -78,7 +78,7 @@ public final class DirectoryAreas {
    areasInGF.add(room1);
    areasInGF.add(room2);
 
-   Partition groundfloor = new Partition("groundFloor",areasInGF);
+   Partition ground_floor = new Partition("ground floor",areasInGF);
 
 
    /*--------*/
@@ -97,7 +97,7 @@ public final class DirectoryAreas {
    //root
    ArrayList<Area> buildingToDoors = new ArrayList<>();
    buildingToDoors.add(basement);
-   buildingToDoors.add(groundfloor);
+   buildingToDoors.add(ground_floor);
    buildingToDoors.add(floor1);
    buildingToDoors.add(stairs);
    buildingToDoors.add(exterior);
@@ -148,10 +148,10 @@ public final class DirectoryAreas {
 
   }
 
- }
 
 
-}
+
+
 
 
 

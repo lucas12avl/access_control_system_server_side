@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 //tiene que importar las areas y las puertas
 import baseNoStates.AreaSpaces.DirectoryAreas;
-
+import baseNoStates.AreaSpaces.*;
 
 import baseNoStates.Door;
 

@@ -5,7 +5,7 @@ import baseNoStates.Door;
 
 import java.util.ArrayList;
 
-abstract class Area {
+public abstract class Area {
  protected String AreaID; //protected --> forma parte de las clases derivadas, pero las que no son derivadas deven acceder atraves de getters y setters
 
 
@@ -17,9 +17,6 @@ abstract class Area {
   return AreaID;
  }
 
- public abstract ArrayList<Door> getDoors();
-
-
 
  //  se tiene que hacer para el process de la classe request areas
 
@@ -27,7 +24,7 @@ abstract class Area {
  public abstract Area findAreaById(String id);
 
 
-
+public abstract ArrayList<Door> getDoorsGivingAccess();
 
 
 
