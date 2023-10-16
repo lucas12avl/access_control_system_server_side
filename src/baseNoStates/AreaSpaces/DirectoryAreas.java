@@ -78,7 +78,7 @@ public final class DirectoryAreas {
    areasInGF.add(room1);
    areasInGF.add(room2);
 
-   Partition ground_floor = new Partition("ground floor",areasInGF);
+   Partition ground_floor = new Partition("ground_floor",areasInGF);
 
 
    /*--------*/
