@@ -3,7 +3,7 @@ package baseNoStates.UsersGroups;
 import java.util.ArrayList;
 
 public final class  DirectoryUserGroups {
-  private static final ArrayList<UserGroup> groups = new ArrayList<>(); //lista con los grupos
+  private static final ArrayList<User> users = new ArrayList<>(); //lista con los grupos
 
   public static void makeUserGroups() {
     //TODO: make user groups according to the specifications in the comments, because
@@ -51,13 +51,13 @@ public final class  DirectoryUserGroups {
     System.out.println("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
-
+/*
   void classifyUsersByGroups(ArrayList<User> usuarios){
 
     for (User user : usuarios){
 
       if (user.getRole() != null){
-        switch ()
+        //switch ()
       }
 
 
@@ -65,6 +65,6 @@ public final class  DirectoryUserGroups {
 
 
   }
-
+*/
 
 }

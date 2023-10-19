@@ -7,16 +7,14 @@ import java.util.ArrayList;
 
 
 
-class Space extends Area {
+public class Space extends Area {
 
-  private final ArrayList<Door> doors;
+  private final ArrayList<Door> doors = new ArrayList<>();
   // la id esta definida en la abstracta area
 
 
-  public Space(String nameSpace, ArrayList<Door> doors) {
+  public Space(String nameSpace) {
     super(nameSpace);
-    this.doors = doors;
-
 
   }
 
@@ -35,6 +33,15 @@ class Space extends Area {
     // Si no, devolvemos null
     return null;
   }
+
+
+
+  public void addDoorsToSpace(Door puerta){
+    doors.add(puerta);
+  }
+
+
+
 }
 
 

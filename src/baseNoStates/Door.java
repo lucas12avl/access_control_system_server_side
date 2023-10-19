@@ -1,7 +1,9 @@
 package baseNoStates;
+import baseNoStates.AreaSpaces.Space;
 import baseNoStates.doorstates.DoorState;
 import baseNoStates.doorstates.Unlocked;
 import baseNoStates.requests.RequestReader;
+
 import org.json.JSONObject;
 
 
@@ -12,15 +14,15 @@ public class Door {
 
   //añadimos dos variables privadas to y from, que indican que la puerta va de un 'space' a otro,
   // 'from' es l 'space donde se encuentra el sensor
-  private final String from;
-  private final String to;
+  private final Space from;
+  private final Space to;
 
 
   // Added locked value
   private String locked;
   DoorState currentState;
 
-  public Door(String id, String desde, String hacia) {
+  public Door(String id, Space desde, Space hacia) {
 
     this.id = id;
     closed = true;
@@ -32,6 +34,10 @@ public class Door {
 
      this.from = desde;
      this.to = hacia;
+
+     this.to.addDoorsToSpace(this); // asiganmos la puerta al espcio al que lleva
+
+
 
   }
 
@@ -129,12 +135,12 @@ public class Door {
     return id;
   }
 
-  public String getFrom() {
+  public Space getFrom() {
     return from;
   }
 
   // necesitamos saber de donde a donde llevan las puertas
-  public String getTo() {
+  public Space getTo() {
     return to;
   }
 
