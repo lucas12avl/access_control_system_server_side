@@ -1,20 +1,19 @@
 package baseNoStates.requests;
 
 import baseNoStates.DirectoryDoors;
-import baseNoStates.DirectoryUsers;
+import baseNoStates.UsersGroups.DirectoryUserGroups;
 import baseNoStates.Door;
-import baseNoStates.User;
+import baseNoStates.UsersGroups.User;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-class timeTable{
+/*class timeTable{
   static LocalDateTime employeeTimeFrom = LocalDateTime.of(2023,9,1,9,0,0);
   static LocalDateTime employeeTimeTo = LocalDateTime.of(2024,3,1,17,0,0);
-}
+}*/
 
 public class RequestReader implements Request {
   private final String credential; // who
@@ -83,7 +82,7 @@ public class RequestReader implements Request {
   // see if the request is authorized and put this into the request, then send it to the door.
   // if authorized, perform the action.
   public void process() {
-    User user = DirectoryUsers.findUserByCredential(credential);
+    User user = DirectoryUserGroups.findUserByCredential(credential);
     Door door = DirectoryDoors.findDoorById(doorId);
     assert door != null : "door " + doorId + " not found";
     authorize(user, door);
