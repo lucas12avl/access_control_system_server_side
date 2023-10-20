@@ -7,9 +7,9 @@ import java.util.ArrayList;
  public class Partition extends Area {
  private final ArrayList<Area> areas;
 
- public Partition(String namePartitionon, ArrayList<Area> areas){
+ public Partition(String namePartition, ArrayList<Area> areas){
 
-  super(namePartitionon);
+  super(namePartition);
   this.areas = areas;
 
  }
