@@ -14,7 +14,7 @@ public final class DirectoryAreas {
 
 
 
-  public static void makeAreas() { // space(id + array<doors>) , partition(id + array areas)
+  public static void makeAreas() { // creamos areas y puertas, las puertas se autoañaden al area al q da acceso
 
    allDoors = DirectoryDoors.getAllDoors();
 
