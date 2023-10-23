@@ -44,7 +44,7 @@ public class User {
     int month = now.getMonthValue();
     int day = now.getDayOfMonth();
     int year = now.getYear();
-    LocalDate dateArgument = LocalDate.of(year,month,year);
+    LocalDate dateArgument = LocalDate.of(year,month,day);
 
 
 
@@ -63,10 +63,9 @@ public class User {
 
   public boolean canBeInSpace(Space space){
 
-    String area = space.getAreaID();
 
     return switch (this.group.getGroupId()) {
-      case "Employee" -> this.group.getAreasAvailables().contains(space.findAreaById(area));
+      case "Employee" -> this.group.getAreasAvailables().contains(space.getAreaID());
       case "Manager" -> true;
       case "Admin" -> true;
       default -> false; //BLANK USERS HERE

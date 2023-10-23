@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class UserGroup { //Groups are the ones to make the actions, not the users
   private final String groupId;
   private ArrayList<User> userList; //list with the different users in the group
-  private ArrayList<Area> areasAvailables;
+  private ArrayList<String> areasAvailables;
   private ArrayList<String> actionsAvailable;
 
 
-  public UserGroup(String ID,ArrayList<User> groupUsers,ArrayList<Area> areas, ArrayList<String> actions){
+  public UserGroup(String ID,ArrayList<User> groupUsers,ArrayList<String> areas, ArrayList<String> actions){
 
    groupId = ID;
    userList = groupUsers;
@@ -33,11 +33,11 @@ public class UserGroup { //Groups are the ones to make the actions, not the user
     return userList;
   }
 
-  public ArrayList<Area> getAreasAvailables() {
+  public ArrayList<String> getAreasAvailables() {
     return areasAvailables;
   }
 
-  public void setAreasAvailables(ArrayList<Area> areasNotAvailables) {
+  public void setAreasAvailables(ArrayList<String> areasNotAvailables) {
     this.areasAvailables = areasNotAvailables;
   }
 

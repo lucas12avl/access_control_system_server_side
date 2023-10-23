@@ -13,27 +13,27 @@ public final class  DirectoryUserGroups {
 
   //BLANK GROUP INIT
   private static ArrayList<User>blankUsers = new ArrayList<>();
-  private static ArrayList<Area>blankAreas = new ArrayList<>();
+  private static ArrayList<String>blankAreas = new ArrayList<>();
   private static ArrayList<String>blankActions = new ArrayList<>();
   private static UserGroup blank = new UserGroup("Blank",blankUsers,blankAreas, blankActions );
 
   //EMPLOYEES GROUP INIT
 
   private static ArrayList<User>employeeUsers = new ArrayList<>();
-  private static ArrayList<Area>employeeAreas = new ArrayList<>();
+  private static ArrayList<String>employeeAreas = new ArrayList<>();
   private static ArrayList<String>employeeActions = new ArrayList<>();
   private static UserGroup employee = new UserGroup("Employee",employeeUsers,employeeAreas, employeeActions);
 
   //MANAGER GROUP INIT
 
   private static ArrayList<User>managerUsers = new ArrayList<>();
-  private static ArrayList<Area>managerAreas = new ArrayList<>();
+  private static ArrayList<String>managerAreas = new ArrayList<>();
   private static ArrayList<String>managerActions = new ArrayList<>();
   private static UserGroup manager = new UserGroup("Manager",managerUsers,managerAreas, managerActions);
 
   //ADMIN INIT
   private static ArrayList<User>adminUsers = new ArrayList<>();
-  private static ArrayList<Area>adminAreas = new ArrayList<>();
+  private static ArrayList<String>adminAreas = new ArrayList<>();
   private static ArrayList<String>adminActions = new ArrayList<>();
   private static UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas, adminActions);
 
@@ -69,14 +69,14 @@ public final class  DirectoryUserGroups {
     employee.setActionsAvailable(Actions.OPEN);
     employee.setActionsAvailable(Actions.UNLOCK_SHORTLY);
 
-    employeeAreas.add(DirectoryAreas.findAreaById("stairs"));
-    employeeAreas.add(DirectoryAreas.findAreaById("room1"));
-    employeeAreas.add(DirectoryAreas.findAreaById("room2"));
-    employeeAreas.add(DirectoryAreas.findAreaById("hall"));
-    employeeAreas.add(DirectoryAreas.findAreaById("exterior"));
-    employeeAreas.add(DirectoryAreas.findAreaById("IT"));
-    employeeAreas.add(DirectoryAreas.findAreaById("room3"));
-    employeeAreas.add(DirectoryAreas.findAreaById("corridor"));
+    employeeAreas.add("stairs");
+    employeeAreas.add("room1");
+    employeeAreas.add("room2");
+    employeeAreas.add("hall");
+    employeeAreas.add("exterior");
+    employeeAreas.add("IT");
+    employeeAreas.add("room3");
+    employeeAreas.add("corridor");
 
     employee.setAreasAvailables(employeeAreas);
 
@@ -96,7 +96,7 @@ public final class  DirectoryUserGroups {
     manager.setUser(user6);
 
     managerAreas.addAll(employeeAreas);
-    managerAreas.add(DirectoryAreas.findAreaById("parking"));
+    managerAreas.add("parking");
     manager.setAreasAvailables(managerAreas);
 
     manager.setActionsAvailable(Actions.OPEN);
