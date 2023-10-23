@@ -21,3 +21,15 @@ with this implemented, I created the new abstract class 'Area' where I have had 
 this class extends two new classes that I already make: Partition(contains an array of other areas) and Space(contains an array of the different doors that gives acces to an Area)
 in both classes I implemented the abstract methods, his attributes and constructors.
 Also I have modified the Door constructor so that when creating a door the areas it connects are needed to add the door to the area that gives access
+
+Alvaro:
+I Implemented all the design of the permissions and schedulers of all the groups, including the creation of the groups and the declaration of all of them.
+Specifically I added to the user class a new attributed that represents the group where the user belongs to.
+After this I separated the Directory users class into DirectoryUSerGroups and USer group,(Also having the user class).
+In the user group I implemented the constructor of the class and also added the different attributes of the class such as the different lists required, the grup ID and so.
+Also in the class User group there are the respective getters and setters for each attribute.
+After that I modified the class DirectoryUserGroups by initializing the different groups and also by creating the lists of each group.
+Also I modified the class user  by adding the three methods that check if a user is authorized or not.
+to do the checks I created a class times that has global attributes with the specific requirements of time for employees and managers.
+Finally I end a method from the RequestReader class that checks tif a user is authorized or not.
+

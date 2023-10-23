@@ -100,8 +100,34 @@ public class RequestReader implements Request {
       authorized = false;
       addReason("user doesn't exists");
     } else {
-      //TODO: get the who, where, when and what in order to decide, and if not
-      // authorized add the reason(s)
+      boolean aut; //helps us to know the reasons
+
+      aut = user.canSendRequest(now);
+      if(!aut){
+        addReason("Can not send request, is not your date/time");
+      }
+
+
+      aut = user.canBeInSpace(door.getFrom());
+      if(!aut){
+        addReason("Can not send request from here");
+      }
+
+
+      aut =  user.canBeInSpace(door.getTo());
+      if(!aut){
+        addReason("Can not go there");
+      }
+
+
+
+      aut = user.canDoAction(action);
+      if(!aut){
+        addReason("Can not do the requested action");
+      }
+
+
+
       authorized = user.canSendRequest(now) && user.canBeInSpace(door.getFrom()) &&
           user.canBeInSpace(door.getTo()) && user.canDoAction(action);
 
