@@ -102,25 +102,8 @@ public class RequestReader implements Request {
     } else {
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
-      authorized = true;
-      /*switch (user.getRole()){
-        case 0: //blank case --> no permissions
-          authorized = false;
-          addReason("User has not the right permissions");
-        case 1: //employees --> all perms in actions
-          if(now.isBefore(timeTable.employeeTimeFrom)) {
-            authorized = false;
-          } else authorized = !now.isAfter(timeTable.employeeTimeTo);
-        case 2: //manages --> all perms in actions + zones
-         // if(now.isBefore(timeTable.employeeTime1)){
-
-         // }
-        case 3://admin  --> all perms
-          authorized = true;
-        default:
-          authorized = false;*/
-      //}
-
+      authorized = user.canSendRequest(now) && user.canBeInSpace(door.getFrom()) &&
+          user.canBeInSpace(door.getTo()) && user.canDoAction(action);
 
     }
   }

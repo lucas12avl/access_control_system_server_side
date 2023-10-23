@@ -1,7 +1,9 @@
 package baseNoStates.UsersGroups;
 
+import baseNoStates.Actions;
 import baseNoStates.AreaSpaces.Area;
 import baseNoStates.AreaSpaces.DirectoryAreas;
+import baseNoStates.AreaSpaces.Partition;
 
 import java.util.ArrayList;
 
@@ -12,24 +14,28 @@ public final class  DirectoryUserGroups {
   //BLANK GROUP INIT
   private static ArrayList<User>blankUsers = new ArrayList<>();
   private static ArrayList<Area>blankAreas = new ArrayList<>();
-  private static UserGroup blank = new UserGroup("Blank",blankUsers,blankAreas );
+  private static ArrayList<String>blankActions = new ArrayList<>();
+  private static UserGroup blank = new UserGroup("Blank",blankUsers,blankAreas, blankActions );
 
   //EMPLOYEES GROUP INIT
 
   private static ArrayList<User>employeeUsers = new ArrayList<>();
   private static ArrayList<Area>employeeAreas = new ArrayList<>();
-  private static UserGroup employee = new UserGroup("Employee",employeeUsers,employeeAreas );
+  private static ArrayList<String>employeeActions = new ArrayList<>();
+  private static UserGroup employee = new UserGroup("Employee",employeeUsers,employeeAreas, employeeActions);
 
   //MANAGER GROUP INIT
 
   private static ArrayList<User>managerUsers = new ArrayList<>();
   private static ArrayList<Area>managerAreas = new ArrayList<>();
-  private static UserGroup manager = new UserGroup("Manager",managerUsers,managerAreas );
+  private static ArrayList<String>managerActions = new ArrayList<>();
+  private static UserGroup manager = new UserGroup("Manager",managerUsers,managerAreas, managerActions);
 
   //ADMIN INIT
   private static ArrayList<User>adminUsers = new ArrayList<>();
   private static ArrayList<Area>adminAreas = new ArrayList<>();
-  private static UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas);
+  private static ArrayList<String>adminActions = new ArrayList<>();
+  private static UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas, adminActions);
 
   private static  final ArrayList<User> users = new ArrayList<>();
   public static void makeUserGroups() {
@@ -45,7 +51,8 @@ public final class  DirectoryUserGroups {
     users.add(user1);
     users.add(user2);
     blank.setUser(user1);
-    blank.setUser(user2);//
+    blank.setUser(user2);
+    //
 
     // employees :
     // Sep. 1 2023 to Mar. 1 2024
@@ -58,6 +65,20 @@ public final class  DirectoryUserGroups {
     users.add(user4);
     employee.setUser(user3);
     employee.setUser(user4);
+    employee.setActionsAvailable(Actions.CLOSE);
+    employee.setActionsAvailable(Actions.OPEN);
+    employee.setActionsAvailable(Actions.UNLOCK_SHORTLY);
+
+    employeeAreas.add(DirectoryAreas.findAreaById("stairs"));
+    employeeAreas.add(DirectoryAreas.findAreaById("room1"));
+    employeeAreas.add(DirectoryAreas.findAreaById("room2"));
+    employeeAreas.add(DirectoryAreas.findAreaById("hall"));
+    employeeAreas.add(DirectoryAreas.findAreaById("exterior"));
+    employeeAreas.add(DirectoryAreas.findAreaById("IT"));
+    employeeAreas.add(DirectoryAreas.findAreaById("room3"));
+    employeeAreas.add(DirectoryAreas.findAreaById("corridor"));
+
+    employee.setAreasAvailables(employeeAreas);
 
 
 
@@ -70,8 +91,20 @@ public final class  DirectoryUserGroups {
     User user6=new User("Marta", "05827", manager);
     users.add(user5);
     users.add(user6);
+
     manager.setUser(user5);
     manager.setUser(user6);
+
+    managerAreas.addAll(employeeAreas);
+    managerAreas.add(DirectoryAreas.findAreaById("parking"));
+    manager.setAreasAvailables(managerAreas);
+
+    manager.setActionsAvailable(Actions.OPEN);
+    manager.setActionsAvailable(Actions.CLOSE);
+    manager.setActionsAvailable(Actions.LOCK);
+    manager.setActionsAvailable(Actions.UNLOCK);
+    manager.setActionsAvailable(Actions.UNLOCK_SHORTLY);
+
     // admin :
     // always=2023 to 2100
     // all days of the week
@@ -81,6 +114,14 @@ public final class  DirectoryUserGroups {
     users.add(user7);
     admin.setUser(user7);
 
+    adminAreas.addAll(managerAreas);
+    admin.setAreasAvailables(adminAreas);
+
+    admin.setActionsAvailable(Actions.OPEN);
+    admin.setActionsAvailable(Actions.CLOSE);
+    admin.setActionsAvailable(Actions.LOCK);
+    admin.setActionsAvailable(Actions.UNLOCK);
+    admin.setActionsAvailable(Actions.UNLOCK_SHORTLY);
 
 
   }
