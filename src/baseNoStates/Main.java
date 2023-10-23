@@ -8,7 +8,7 @@ import baseNoStates.UsersGroups.DirectoryUserGroups;
 
 public class Main {
   public static void main(String[] args) {
-    DirectoryDoors.makeDoors();
+    // DirectoryDoors.makeDoors(); ya no hace falta
     DirectoryUserGroups.makeUserGroups();
     DirectoryAreas.makeAreas();
     new WebServer();

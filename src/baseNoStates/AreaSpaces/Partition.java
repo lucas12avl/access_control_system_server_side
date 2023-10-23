@@ -4,12 +4,12 @@ import baseNoStates.Door;
 
 import java.util.ArrayList;
 
-class Partition extends Area {
+ public class Partition extends Area {
  private final ArrayList<Area> areas;
 
- public Partition(String namePartitionon, ArrayList<Area> areas){
+ public Partition(String namePartition, ArrayList<Area> areas){
 
-  super(namePartitionon);
+  super(namePartition);
   this.areas = areas;
 
  }

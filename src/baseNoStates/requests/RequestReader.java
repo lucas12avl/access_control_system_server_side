@@ -1,6 +1,6 @@
 package baseNoStates.requests;
 
-import baseNoStates.DirectoryDoors;
+import baseNoStates.AreaSpaces.DirectoryAreas;
 import baseNoStates.UsersGroups.DirectoryUserGroups;
 import baseNoStates.Door;
 import baseNoStates.UsersGroups.User;
@@ -83,7 +83,7 @@ public class RequestReader implements Request {
   // if authorized, perform the action.
   public void process() {
     User user = DirectoryUserGroups.findUserByCredential(credential);
-    Door door = DirectoryDoors.findDoorById(doorId);
+    Door door = DirectoryAreas.findDoorById(doorId);
     assert door != null : "door " + doorId + " not found";
     authorize(user, door);
     // this sets the boolean authorize attribute of the request

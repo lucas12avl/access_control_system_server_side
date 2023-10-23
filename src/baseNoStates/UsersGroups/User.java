@@ -5,16 +5,16 @@ public class User {
   private final String name;
   private final String credential;
 
-  private final String role;
+  private UserGroup group;
 
-  public User(String name, String credential, String rol) {
+  public User(String name, String credential, UserGroup group) {
     this.name = name;
     this.credential = credential;
-    this.role = rol;
+    this.group = group;
   }
 
-  public String getRole() {
-    return role;
+  public UserGroup getGroup() {
+    return group;
   }
 
   public String getCredential() {
