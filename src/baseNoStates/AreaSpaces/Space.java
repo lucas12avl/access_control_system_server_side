@@ -10,7 +10,7 @@ import java.util.ArrayList;
 class Space extends Area {
 
   private final ArrayList<Door> doors;
-  // la id esta definida en la abstracta area
+  //the id is defined in the abstract class
 
 
   public Space(String nameSpace, ArrayList<Door> doors) {
@@ -28,11 +28,11 @@ class Space extends Area {
 
 
   public Area findAreaById(String id) {
-    // Si el id coincide con el de este espacio, lo devolvemos
+    // if the id matches the name, we return the area
     if (this.AreaID.equals(id)) {
       return this;
     }
-    // Si no, devolvemos null
+    // if not, return null
     return null;
   }
 }

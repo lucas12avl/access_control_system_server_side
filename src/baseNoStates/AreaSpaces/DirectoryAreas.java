@@ -5,8 +5,7 @@ import baseNoStates.Door;
 
 import java.util.ArrayList;
 
-// se encarga de crear las diferentes areas
-// tambien hay uq ehacer las partitions que son lugares que incluyen mucas areas
+// this class makes the different areas and doors
 public final class DirectoryAreas {
 
  private static Area rootArea;
@@ -14,8 +13,7 @@ public final class DirectoryAreas {
 
 
 
-  public static void makeAreas() { // creamos areas y puertas, las puertas se autoañaden al area al q da acceso
-
+  public static void makeAreas() { // makes the ares first and later the doors, the doors constructor need the area 'TO' to add the door on the correct space
    allDoors = DirectoryDoors.getAllDoors();
 
    //stairs
@@ -126,7 +124,7 @@ public final class DirectoryAreas {
    for (Door door : allDoors){
 
     if (door.getTo().equals(To))
-     AreaDoors.add(door);
+     AreaDoors.add(door); // returns all the doors with the same To strong attribute
 
    }
  return AreaDoors;
@@ -138,10 +136,9 @@ public final class DirectoryAreas {
 
   Area result = null;
 
-  if (rootArea != null) { //miramos que no sea null la raiz
+  if (rootArea != null) { //we need to look if the root is null
    result = rootArea.findAreaById(nameArea);
   }
-  // devuelve el resultado
   return result;
  }
 

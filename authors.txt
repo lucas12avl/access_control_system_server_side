@@ -13,3 +13,8 @@ A new variable String variable named "locked" was created, that indicated
     unlocked.
 This new variable was added inside the Door constructor with all doors starting
     with value "locked".
+
+Lucas:
+
+
+

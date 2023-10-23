@@ -6,7 +6,7 @@ import baseNoStates.Door;
 import java.util.ArrayList;
 
 public abstract class Area {
- protected String AreaID; //protected --> forma parte de las clases derivadas, pero las que no son derivadas deven acceder atraves de getters y setters
+ protected String AreaID; //protected --> This attribute is part of the derived classes, but those that are not derived must be accessed through getters and setters
 
 
  public Area(String id) {
@@ -16,9 +16,6 @@ public abstract class Area {
  public String getAreaID() {
   return AreaID;
  }
-
-
- //  se tiene que hacer para el process de la classe request areas
 
 
  public abstract Area findAreaById(String id);
