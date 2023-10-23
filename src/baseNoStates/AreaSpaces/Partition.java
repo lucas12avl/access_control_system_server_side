@@ -4,21 +4,21 @@ import baseNoStates.Door;
 
 import java.util.ArrayList;
 
- public class Partition extends Area {
- private final ArrayList<Area> areas;
+public class Partition extends Area {
+  private final ArrayList<Area> areas;
 
- public Partition(String namePartition, ArrayList<Area> areas){
+  public Partition(String namePartitionon, ArrayList<Area> areas){
 
-  super(namePartition);
-  this.areas = areas;
+    super(namePartitionon);
+    this.areas = areas;
 
- }
+  }
 
   @Override
-  public ArrayList<Door> getDoorsGivingAccess() { // it search space by space all the doors that are givin access to the selected space
+  public ArrayList<Door> getDoorsGivingAccess() { // go space by space obtaining all the doors it gives access to
 
-    ArrayList<Door> inside_part_doors = new ArrayList<>(); //we need to save all the doors that we found
-    for (Area area : areas) {  //we need to search all the areas that the partition contains, these other areas would be partitions or spaces (spaces only contains doors)
+    ArrayList<Door> inside_part_doors = new ArrayList<>(); //here we keep all the doors found within the partition
+    for (Area area : areas) {  //We go through all the areas that the partition has, these areas can be other partitions themselves, or areas that already contain doors
 
       inside_part_doors.addAll(area.getDoorsGivingAccess());
     }
@@ -28,19 +28,19 @@ import java.util.ArrayList;
 
 
   public Area findAreaById(String id) {
-    // If the id matches the name of the partition we are in, we return it
+    // if the id matches the name on the area, we have to return the area
     if (this.AreaID.equals(id)) {
       return this;
     }
     // If not, we go through the child areas and search recursively
     for (Area area : areas) {
       Area result = area.findAreaById(id);
-      // if we find the area, we returned it
+
       if (result != null) {
         return result;
       }
     }
-    // If we don't find the area, we return null
+    // if area not found, return null
     return null;
   }
 

@@ -1,111 +1,123 @@
 package baseNoStates.AreaSpaces;
 
-import baseNoStates.DirectoryDoors;
+
 import baseNoStates.Door;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-// this class makes the different areas and doors
-public final class DirectoryAreas {
+
+public final class DirectoryAreas { //makes the differents areas and doors
 
  private static Area rootArea;
  private static ArrayList<Door> allDoors;
 
 
 
-  public static void makeAreas() { // makes the ares first and later the doors, the doors constructor need the area 'TO' to add the door on the correct space
-   allDoors = DirectoryDoors.getAllDoors();
-
-   //stairs
-   ArrayList<Door> stairsToDoors;
-   stairsToDoors = findDoorsToArea("stairs");
-   Space stairs = new Space("stairs", stairsToDoors);
-
-   //exterior
-   ArrayList<Door> exteriorToDoors;
-   exteriorToDoors = findDoorsToArea("exterior");
-   Space exterior = new Space("exterior", exteriorToDoors);
+ public static void makeAreas() { // space(id + array<doors>) , partition(id + array areas)
 
 
-   /*--------*/
-   //IT
-   ArrayList<Door> ItToDoors;
-   ItToDoors = findDoorsToArea("IT");
-   Space it = new Space("IT", ItToDoors);
-
-   //corridor
-   ArrayList<Door> corridorToDoors;
-   corridorToDoors = findDoorsToArea("corridor");
-   Space corridor = new Space("corridor", corridorToDoors);
-
-   //room3
-   ArrayList<Door> room3ToDoors;
-   room3ToDoors = findDoorsToArea("room3");
-   Space room3 = new Space("room3", room3ToDoors);
+  //stairs
+  Space stairs = new Space("stairs");
+  //exterior
+  Space exterior = new Space("exterior");
 
 
-   //floor1
-   ArrayList<Area> areasInFloor1 = new ArrayList<>();
-   // add areas in floor1
-   areasInFloor1.add(room3);
-   areasInFloor1.add(corridor);
-   areasInFloor1.add(it);
-   Partition floor1 = new Partition("floor1", areasInFloor1);
+  /*--------*/
+  //IT
+  Space IT = new Space("IT");
+  //corridor
+  Space corridor = new Space("corridor");
+  //room3
+  Space room3 = new Space("room3");
 
 
-   /*--------*/
-   //room2
-   ArrayList<Door> room2ToDoors;
-   room2ToDoors = findDoorsToArea("room2");
-   Space room2 = new Space("room2", room2ToDoors);
+  //floor1
+  ArrayList<Area> areasInFloor1 = new ArrayList<>();
+  // add areas in floor1
+  areasInFloor1.add(room3);
+  areasInFloor1.add(corridor);
+  areasInFloor1.add(IT);
+  Partition floor1 = new Partition("floor1", areasInFloor1);
 
+
+  /*--------*/
+  //room2
+  Space room2 = new Space("room2");
   //room1
-   ArrayList<Door> room1ToDoors;
-   room1ToDoors = findDoorsToArea("room1");
-   Space room1 = new Space("room1", room1ToDoors);
+  Space room1 = new Space("room1");
+  //hall
+  Space hall = new Space("hall");
 
-   //hall
-   ArrayList<Door> hallToDoors;
-   hallToDoors = findDoorsToArea("hall");
-   Space hall = new Space("hall", hallToDoors);
+  //ground floor
+  ArrayList<Area> areasInGF = new ArrayList<>();
+  //add areas in GF
+  areasInGF.add(hall);
+  areasInGF.add(room1);
+  areasInGF.add(room2);
 
-   //ground floor
-   ArrayList<Area> areasInGF = new ArrayList<>();
-   //add areas in GF
-   areasInGF.add(hall);
-   areasInGF.add(room1);
-   areasInGF.add(room2);
-
-   Partition ground_floor = new Partition("ground_floor",areasInGF);
+  Partition ground_floor = new Partition("ground_floor",areasInGF);
 
 
-   /*--------*/
-   //parking
-   ArrayList<Door> parkingToDoors;
-   parkingToDoors = findDoorsToArea("parking");
-   Space parking = new Space("parking",parkingToDoors);
+  /*--------*/
+  //parking
+  Space parking = new Space("parking");
+  //basement
+  ArrayList<Area> areasInBasemenet = new ArrayList<>();
+  areasInBasemenet.add(parking);
+  Partition basement = new Partition("basement",areasInBasemenet);
 
-   //basement
-   ArrayList<Area> sotano = new ArrayList<>();
-   sotano.add(parking);
-   Partition basement = new Partition("basement", sotano);
-   /*--------*/
+  /*--------*/
+  //root
+  ArrayList<Area> buildingToDoors = new ArrayList<>();
+  buildingToDoors.add(basement);
+  buildingToDoors.add(ground_floor);
+  buildingToDoors.add(floor1);
+  buildingToDoors.add(stairs);
+  buildingToDoors.add(exterior);
+  rootArea = new Partition("building", buildingToDoors);
+
+//We create the doors (id from to) in the constructor and they are automatically added to the area to which they give access since:
+  // area = set of doors that give access to an area (that's why they are added to the To)
+  Door d1 = new Door("D1", exterior, parking); // exterior, parking
+  Door d2 = new Door("D2", stairs, parking); // stairs, parking
+
+  // ground floor
+  Door d3 = new Door("D3", exterior, hall); // exterior, hall
+  Door d4 = new Door("D4", stairs, hall); // stairs, hall
+  Door d5 = new Door("D5", hall, room1); // hall, room1
+  Door d6 = new Door("D6", hall, room2); // hall, room2
+
+  // first floor
+  Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
+  Door d8 = new Door("D8", corridor, room3); // corridor, room3
+  Door d9 = new Door("D9", corridor, IT); // corridor, IT
+
+  allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
 
 
-   //root
-   ArrayList<Area> buildingToDoors = new ArrayList<>();
-   buildingToDoors.add(basement);
-   buildingToDoors.add(ground_floor);
-   buildingToDoors.add(floor1);
-   buildingToDoors.add(stairs);
-   buildingToDoors.add(exterior);
-   rootArea = new Partition("building", buildingToDoors);
+ }
 
+
+
+
+
+ public static Area findAreaById(String nameArea){
+
+
+  Area result = null;
+
+  if (rootArea != null) { //look if the root is null
+   result = rootArea.findAreaById(nameArea);
   }
 
-  public static ArrayList<Door> getAllDoors(){
-   return allDoors;
-  }
+  return result;
+ }
+
+ public static ArrayList<Door> getAllDoors() {
+  System.out.println(allDoors);
+  return allDoors;
+ }
 
 
  public static Door findDoorById(String id) {
@@ -118,37 +130,5 @@ public final class DirectoryAreas {
   return null; // otherwise we get a Java error
  }
 
- public static ArrayList<Door> findDoorsToArea(String To){
-   ArrayList<Door> AreaDoors = new ArrayList<>();
 
-   for (Door door : allDoors){
-
-    if (door.getTo().equals(To))
-     AreaDoors.add(door); // returns all the doors with the same To strong attribute
-
-   }
- return AreaDoors;
-
- }
-
- public static Area findAreaById(String nameArea){
-
-
-  Area result = null;
-
-  if (rootArea != null) { //we need to look if the root is null
-   result = rootArea.findAreaById(nameArea);
-  }
-  return result;
- }
-
-
-  }
-
-
-
-
-
-
-
-
+}

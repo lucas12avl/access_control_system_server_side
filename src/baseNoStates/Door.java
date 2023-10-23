@@ -32,10 +32,10 @@ public class Door {
      */
     locked = "locked";
 
-     this.from = desde;
-     this.to = hacia;
+    this.from = desde;
+    this.to = hacia;
 
-     this.to.addDoorsToSpace(this); // asiganmos la puerta al espcio al que lleva
+    this.to.addDoorsToSpace(this); // asiganmos la puerta al espcio al que lleva
 
 
 
@@ -149,7 +149,7 @@ public class Door {
   }
 
   public void setStateName(DoorState door) {
-     this.currentState = door;
+    this.currentState = door;
   }
 
 

@@ -7,16 +7,14 @@ import java.util.ArrayList;
 
 
 
-class Space extends Area {
+public class Space extends Area {
 
-  private final ArrayList<Door> doors;
-  //the id is defined in the abstract class
+  private final ArrayList<Door> doors = new ArrayList<>();
+  // id already defined in abstract class
 
 
-  public Space(String nameSpace, ArrayList<Door> doors) {
+  public Space(String nameSpace) {
     super(nameSpace);
-    this.doors = doors;
-
 
   }
 
@@ -28,17 +26,20 @@ class Space extends Area {
 
 
   public Area findAreaById(String id) {
-    // if the id matches the name, we return the area
+    // if the id matches the name of the current space, we have to return this space
     if (this.AreaID.equals(id)) {
       return this;
     }
     // if not, return null
     return null;
   }
+
+
+
+  public void addDoorsToSpace(Door puerta){
+    doors.add(puerta);
+  }
+
+
+
 }
-
-
-
-
-
-
