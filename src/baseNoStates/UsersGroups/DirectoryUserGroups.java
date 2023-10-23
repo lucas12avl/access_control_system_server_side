@@ -45,7 +45,7 @@ public final class  DirectoryUserGroups {
     users.add(user1);
     users.add(user2);
     blank.setUser(user1);
-    blank.setUser(user2);
+    blank.setUser(user2); //
 
     // employees :
     // Sep. 1 2023 to Mar. 1 2024
