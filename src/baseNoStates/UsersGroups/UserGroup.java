@@ -1,20 +1,21 @@
 package baseNoStates.UsersGroups;
 
 import baseNoStates.AreaSpaces.DirectoryAreas;
+import baseNoStates.AreaSpaces.Area;
 
 import java.util.ArrayList;
 
 
 public class UserGroup { //Groups are the ones to make the actions, not the users
   private final String groupId;
-  private ArrayList<User> userList = new ArrayList<>(); //list with the different users in the group
-  private ArrayList<DirectoryAreas> areasAvailables;
+  private ArrayList<User> userList; //list with the different users in the group
+  private ArrayList<Area> areasAvailables;
 
 
-  public UserGroup(String ID,User user,ArrayList<DirectoryAreas> areas){
+  public UserGroup(String ID,ArrayList<User> groupUsers,ArrayList<Area> areas){
 
    groupId = ID;
-   userList.add(user);
+   userList = groupUsers;
    areasAvailables = areas;
   }
 
@@ -26,16 +27,16 @@ public class UserGroup { //Groups are the ones to make the actions, not the user
     return userList;
   }
 
-  public ArrayList<DirectoryAreas> getAreasAvailables() {
+  public ArrayList<Area> getAreasAvailables() {
     return areasAvailables;
   }
 
-  public void setAreasAvailables(ArrayList<DirectoryAreas> areasAvailables) {
+  public void setAreasAvailables(ArrayList<Area> areasAvailables) {
     this.areasAvailables = areasAvailables;
   }
 
-  public void setUserList(ArrayList<User> userList) {
-    this.userList = userList;
+  public void setUser(User user) {
+    this.userList.add(user);
   }
 
 }
