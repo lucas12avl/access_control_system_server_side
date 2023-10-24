@@ -34,14 +34,6 @@ class DirectoryDoors {
 
 DirectoryDoors --> "*" Door : "allDoors"
 
-class DirectoryUsers {
-- {static} users : User[]
-+ {static} makeUsers()
-+ {static} findUserByCredential(credential : String) : User
-}
-
-DirectoryUsers --> "*" User : "users"
-
 class Door {
 - id : String
 - closed : boolean
@@ -54,14 +46,6 @@ class Door {
 '+ setClosed(b : boolean)
 '+ getStateName() : String
 - doAction(action : String)
-}
-
-
-class User {
-- name : String
-- credential : String
-+ User(name: String, credential: String)
-+ toString() : String
 }
 
 
@@ -78,4 +62,229 @@ end note
 Main -[hidden]down- Webserver
 Webserver -[hidden]down- DirectoryDoors
 DirectoryDoors -[hidden]right- DirectoryUsers
+
+'AreaSpaces
+abstract class Area {
+# AreaID : String
++ Area (id : String)
++ getAreaID() : String
++ abstract findAreaById(id : String) : Area
++ abstract getDoorsGivingAccess() : ArrayList<Door>
+}
+
+class DirectoryAreas {
+- {static} rootArea : Area
+- {static} allDoors : ArrayList<Door>
++ {static} void makeAreas()
++ {static} Area findAreaById(nameArea : String) : Area
++ {static} ArrayList<Door> getAllDoors() : ArrayList<Door>
++ {static} Door findDoorById(id : String) : Door
+}
+
+class Partition {
+- areas : ArrayList<Area>
++ Partition(namePartition : String, areas : ArrayList<Area>)
++ ArrayList<Door> getDoorsGivingAccess() : ArrayList<Door>
++ Area findAreaById(id : String) : Area
+}
+
+class Partition {
+- doors : ArrayList<Door>
++ Space(nameSpace : String)
++ ArrayList<Door> getDoorsGivingAccess() : ArrayList<Door>
++ Area findAreaById(id : String)
++ void addDoorsToSpace(puerta : Door)
+}
+
+'doorstates
+class Actions {
++ LOCK : String
++ UNLOCK : String
++ UNLOCK_SHORTLY : String
++ OPEN : String
++ CLOSE : String
+}
+
+abstract class DoorState {
+# door : Door
+# name : String
++ DoorState(door : Door)
++ abstract void open()
++ abstract void close()
++ abstract void lock()
++ abstract void unlock()
++ void setStateName(nouEstat : String)
++ String getState() : String
+}
+
+class Locked {
++ Locked(door : Door)
++ void open()
++ void close()
++ void lock()
++ void unlock()
++ String getState() : String
+}
+
+class States {
++ LOCKED : String
++ UNLOCKED : String
+}
+
+class Unlocked {
++ Unlocked(door : Door)
++ void open()
++ void close()
++ void lock()
++ void unlock()
++ String getState() : String
+}
+
+'requests
+interface Request {
++ JSONObject answerToJson() : JSONObject
++ String toString() : String
++ void process()
+}
+
+class RequestArea {
+- credential : String
+- action : String
+- areaId : String
+- now : LocalDateTime
+- requests : ArrayList<RequestReader>
++ RequestArea(credential : String, action : String, now : LocalDateTime, areaId : String)
++ String getAction() : String
++ JSONObject answerToJson() : JSONObject
++ String toString() : String
++ void process()
+}
+
+class RequestReader {
+- credential : String
+- action : String
+- areaId : String
+- now : LocalDateTime
+- doorId : String
+- userName : String
+- authorized : boolean
+- reasons : ArrayList<String>
+- doorStateName : String
+- doorClosed : boolean
++ RequestReader(credential : String, action : String, now : LocalDateTime, doorId : String)
++ void setDoorStateName(name : String)
++ getAction() : String
++ isAuthorized() : boolean
++ void addReason(reason : String)
++ String toString() : String
++ JSONObject answerToJson() : JSONObject
++ void process()
++ void authorize(user : User, door : Door)
+}
+
+class RequestRefresh {
+- jsonsDoors : ArrayList<JSONObject>
++ JSONObject answerToJson() : JSONObject
++ String toString() : String
++ void process()
+}
+
+'UsersGroups
+class DirectoryUserGroups {
+- {static} groups : ArrayList<UserGroup>
+- {static} blankUsers : ArrayList<User>
+- {static} blankAreas : ArrayList<String>
+- {static} blankActions : ArrayList<String>
+- {static} blank : UserGroup
+- {static} employeeUsers : ArrayList<User>
+- {static} employeeAreas : ArrayList<String>
+- {static} employeeActions : ArrayList<String>
+- {static} employee : UserGroup
+- {static} managerUsers : ArrayList<User>
+- {static} managerAreas : ArrayList<String>
+- {static} managerActions : ArrayList<String>
+- {static} manager : UserGroup
+- {static} adminUsers : ArrayList<User>
+- {static} adminAreas : ArrayList<String>
+- {static} adminActions : ArrayList<String>
+- {static} admin : UserGroup
+- {static} users : ArrayList<User>
++ findUserByCredential(credential : String): User
++ {static} void makeUserGroups()
+}
+
+class Times {
++ {static} timeFromEmployee: LocalTime
++ {static} timeToEmployee: LocalTime
++ {static} employeesNotAvailable: DayOfWeek
++ {static} employeesNotAvailable2: DayOfWeek
+
++ {static} timeFromManager: LocalTime
++ {static} timeToManager: LocalTime
++ {static} managersNotAvailable: DayOfWeek
+
++ {static} timeFrom: LocalDate
++ {static} timeTo: LocalDate
+}
+
+class User {
+- name : String
+- credential : String
++ User(name: String, credential: String)
++ toString() : String
+}
+
+class UserGroup {
+- groupId : String
+- userList : ArrayList<User>
+- areasAvailables : ArrayList<String>
+- actionsAvailable : ArrayList<String>
++ UserGroup(ID : String, groupUsers : ArrayList<User>, areas : ArrayList<String>, actions : ArrayList<String>)
++ String getGroupId(): String
++ ArrayList<User> getUserList() : ArrayList<User>
++ ArrayList<String> getAreasAvailables(): ArrayList<String>
++ void setAreasAvailables(areasNotAvailables : ArrayList<String>)
++ ArrayList<String> getGroupActions(): ArrayList<String>
++ void setActionsAvailable(action: String)
++ void setUser(user : User)
+}
+
+'relations
+'   Usersgroups
+DirectoryUserGroups <-- Times
+DirectoryUserGroups <-- Actions
+User <- Space
+
+'   AreaSpaces
+Area <-- Door
+DirectoryAreas <-- Door
+DirectoryAreas <.. Area
+Partition <-- Door
+Partition <|-- Area
+Space <-- Door
+Space <|-- Area
+
+'   doorstates
+DoorState <-- Door
+Locked <-- Door
+Locked <|-- DoorState
+Unlocked <-- Door
+Unlocked <|-- DoorState
+
+'   requests
+RequestArea <-- Actions
+RequestArea <-- DirectoryAreas
+RequestArea <-- Area
+RequestArea <-- Partition
+RequestArea <-- Space
+RequestArea <|-- Request
+RequestReader <-- DirectoryAreas
+RequestReader <-- DirectoryUserGroups
+RequestReader <-- Door
+RequestReader <-- User
+RequestReader <|-- Request
+RequestRefresh <-- DirectoryAreas
+RequestRefresh <-- Door
+RequestRefresh <|-- Request
+
 @enduml
