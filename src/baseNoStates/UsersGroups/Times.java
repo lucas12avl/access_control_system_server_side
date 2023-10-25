@@ -4,6 +4,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public final class Times {
+  //making this class will help if we need to change schedulers we can just add new schedulers for a new type of user
+  // or change the ones tht already exist without changing functions
 
   //schedulers for employees
   public static final LocalTime timeFromEmployee = LocalTime.of(9,0);
