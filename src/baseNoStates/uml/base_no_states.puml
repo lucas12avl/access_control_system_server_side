@@ -248,12 +248,11 @@ class UserGroup {
 '   Usersgroups
 DirectoryUserGroups <-- Times
 DirectoryUserGroups <-- Actions
-User <- Space
 
 '   AreaSpaces
 Area <-- Door
 DirectoryAreas <-- Door
-DirectoryAreas <-- "1" Area
+ Area <-- "1" DirectoryAreas
 Partition <-- Door
 Area <|--  Partition
 Space <-- Door
@@ -277,6 +276,9 @@ RequestReader <-- DirectoryAreas
 RequestReader <-- DirectoryUserGroups
 RequestReader <-- Door
 RequestReader <-- User
+UserGroup *--> User
+DirectoryUserGroups o--> "1..*"  UserGroup
+
 RequestReader <|-- Request
 RequestRefresh <-- DirectoryAreas
 RequestRefresh <-- Door

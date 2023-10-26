@@ -11,35 +11,39 @@ public final class  DirectoryUserGroups {
   //Arraylist that keeps userGroups object of each group with each user inside
   static final ArrayList<UserGroup> groups = new ArrayList<>();
 
-  //BLANK GROUP INIT
-  private static ArrayList<User>blankUsers = new ArrayList<>();
-  private static ArrayList<String>blankAreas = new ArrayList<>();
-  private static ArrayList<String>blankActions = new ArrayList<>();
-  private static UserGroup blank = new UserGroup("Blank",blankUsers,blankAreas, blankActions );
-
-  //EMPLOYEES GROUP INIT
-
-  private static ArrayList<User>employeeUsers = new ArrayList<>();
-  private static ArrayList<String>employeeAreas = new ArrayList<>();
-  private static ArrayList<String>employeeActions = new ArrayList<>();
-  private static UserGroup employee = new UserGroup("Employee",employeeUsers,employeeAreas, employeeActions);
-
-  //MANAGER GROUP INIT
-
-  private static ArrayList<User>managerUsers = new ArrayList<>();
-  private static ArrayList<String>managerAreas = new ArrayList<>();
-  private static ArrayList<String>managerActions = new ArrayList<>();
-  private static UserGroup manager = new UserGroup("Manager",managerUsers,managerAreas, managerActions);
-
-  //ADMIN INIT
-  private static ArrayList<User>adminUsers = new ArrayList<>();
-  private static ArrayList<String>adminAreas = new ArrayList<>();
-  private static ArrayList<String>adminActions = new ArrayList<>();
-  private static UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas, adminActions);
-
-
   private static  final ArrayList<User> users = new ArrayList<>();
   public static void makeUserGroups() {
+
+    //BLANK GROUP INIT
+    ArrayList<User>blankUsers = new ArrayList<>();
+    ArrayList<String>blankAreas = new ArrayList<>();
+    ArrayList<String>blankActions = new ArrayList<>();
+    UserGroup blank = new UserGroup("Blank",blankUsers,blankAreas, blankActions );
+
+    //EMPLOYEES GROUP INIT
+
+     ArrayList<User>employeeUsers = new ArrayList<>();
+     ArrayList<String>employeeAreas = new ArrayList<>();
+     ArrayList<String>employeeActions = new ArrayList<>();
+     UserGroup employee = new UserGroup("Employee",employeeUsers,employeeAreas, employeeActions);
+
+    //MANAGER GROUP INIT
+
+    ArrayList<User>managerUsers = new ArrayList<>();
+    ArrayList<String>managerAreas = new ArrayList<>();
+    ArrayList<String>managerActions = new ArrayList<>();
+    UserGroup manager = new UserGroup("Manager",managerUsers,managerAreas, managerActions);
+
+    //ADMIN INIT
+    ArrayList<User>adminUsers = new ArrayList<>();
+    ArrayList<String>adminAreas = new ArrayList<>();
+    ArrayList<String>adminActions = new ArrayList<>();
+    UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas, adminActions);
+
+    groups.add(blank);
+    groups.add(employee);
+    groups.add(manager);
+    groups.add(admin);
 
 
     // users without any privilege, just to keep temporally users instead of deleting them,
