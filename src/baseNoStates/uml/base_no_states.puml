@@ -25,14 +25,6 @@ inner class
 of Webserver
 end note
 
-class DirectoryDoors {
-- {static} allDoors : Door[]
-+ {static} makeDoors()
-+ {static} findDoorById(id : String) : Door
-+ {static} getAllDoors() : Door[]
-}
-
-DirectoryDoors --> "*" Door : "allDoors"
 
 class Door {
 - id : String
@@ -54,14 +46,13 @@ class Main {
 }
 
 note right of Main::main
-DirectoryDoors.makeDoors()
+DirectoryAreas.makeAreas()
 DiretoryUsers.makeUsers()
 new Webserver()
 end note
 
 Main -[hidden]down- Webserver
-Webserver -[hidden]down- DirectoryDoors
-DirectoryDoors -[hidden]right- DirectoryUsers
+
 
 'AreaSpaces
 abstract class Area {
@@ -70,6 +61,26 @@ abstract class Area {
 + getAreaID() : String
 + abstract findAreaById(id : String) : Area
 + abstract getDoorsGivingAccess() : ArrayList<Door>
+}
+
+class Space {
+-  ArrayList<Door> doors : Doors {final}
+
++ Space(nameSpace : String)
+
+
+
++ ArrayList<Door> getDoorsGivingAccess()
+
+
+
++ Area findAreaById(id : String )
+
+
+
++ addDoorsToSpace(puerta : Door)
+
+
 }
 
 class DirectoryAreas {
@@ -192,22 +203,6 @@ class RequestRefresh {
 'UsersGroups
 class DirectoryUserGroups {
 - {static} groups : ArrayList<UserGroup>
-- {static} blankUsers : ArrayList<User>
-- {static} blankAreas : ArrayList<String>
-- {static} blankActions : ArrayList<String>
-- {static} blank : UserGroup
-- {static} employeeUsers : ArrayList<User>
-- {static} employeeAreas : ArrayList<String>
-- {static} employeeActions : ArrayList<String>
-- {static} employee : UserGroup
-- {static} managerUsers : ArrayList<User>
-- {static} managerAreas : ArrayList<String>
-- {static} managerActions : ArrayList<String>
-- {static} manager : UserGroup
-- {static} adminUsers : ArrayList<User>
-- {static} adminAreas : ArrayList<String>
-- {static} adminActions : ArrayList<String>
-- {static} admin : UserGroup
 - {static} users : ArrayList<User>
 + findUserByCredential(credential : String): User
 + {static} void makeUserGroups()
@@ -258,11 +253,11 @@ User <- Space
 '   AreaSpaces
 Area <-- Door
 DirectoryAreas <-- Door
-DirectoryAreas <.. Area
+DirectoryAreas <-- "1" Area
 Partition <-- Door
-Partition <|-- Area
+Area <|--  Partition
 Space <-- Door
-Space <|-- Area
+Area <|-- Space
 
 '   doorstates
 DoorState <-- Door
