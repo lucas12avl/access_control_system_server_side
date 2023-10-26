@@ -37,10 +37,10 @@ public final class  DirectoryUserGroups {
   private static ArrayList<String>adminActions = new ArrayList<>();
   private static UserGroup admin = new UserGroup("Admin",adminUsers,adminAreas, adminActions);
 
+
   private static  final ArrayList<User> users = new ArrayList<>();
   public static void makeUserGroups() {
-    //TODO: make user groups according to the specifications in the comments, because
-    // now all are the same
+
 
     // users without any privilege, just to keep temporally users instead of deleting them,
     // this is to withdraw all permissions but still to keep user data to give back
@@ -123,6 +123,11 @@ public final class  DirectoryUserGroups {
     admin.setActionsAvailable(Actions.UNLOCK);
     admin.setActionsAvailable(Actions.UNLOCK_SHORTLY);
 
+    //Once made the groups add them into the list
+    groups.add(blank);
+    groups.add(employee);
+    groups.add(manager);
+    groups.add(admin);
 
   }
 

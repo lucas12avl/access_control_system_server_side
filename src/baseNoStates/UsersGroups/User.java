@@ -14,6 +14,7 @@ public class User {
   private final String name;
   private final String credential;
 
+  //users need attribute group because the group is the one who marks the actions they can make
   private UserGroup group;
 
   public User(String name, String credential, UserGroup group) {
@@ -37,6 +38,8 @@ public class User {
 
   public boolean canSendRequest(LocalDateTime now){
 
+    //related with the class times
+    //we use variables in order to have all data of now divided --> Easily working with the info like this
     DayOfWeek dayOfWeek = now.getDayOfWeek();
     int hour = now.getHour();
     int minute = now.getMinute();
@@ -63,6 +66,8 @@ public class User {
 
   public boolean canBeInSpace(Space space){
 
+    //Function that helps us in order to see if the user can be in the space
+    // or just go to the space selected
 
     return switch (this.group.getGroupId()) {
       case "Employee" -> this.group.getAreasAvailables().contains(space.getAreaID());
@@ -73,6 +78,7 @@ public class User {
   }
 
   public boolean canDoAction(String action){
+    //same as before but this fuction sees of user can do the current action
     return switch (this.group.getGroupId()) {
       case "Employee" -> this.group.getGroupActions().contains(action);
       case "Manager" -> true;
