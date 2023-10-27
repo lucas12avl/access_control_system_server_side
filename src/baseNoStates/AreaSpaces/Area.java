@@ -5,8 +5,11 @@ import baseNoStates.Door;
 
 import java.util.ArrayList;
 
+// The composite programming pattern was used here
+
 public abstract class Area {
- protected String AreaID; //protected --> It is part of the derived classes, but those that are not derived must be accessed through getters and setters
+ //protected --> It is part of the derived classes, but those that are not derived must be accessed through getters and setters
+ protected String AreaID;
 
 
  public Area(String id) {

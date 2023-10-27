@@ -10,11 +10,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/*class timeTable{
-  static LocalDateTime employeeTimeFrom = LocalDateTime.of(2023,9,1,9,0,0);
-  static LocalDateTime employeeTimeTo = LocalDateTime.of(2024,3,1,17,0,0);
-}*/
-
 public class RequestReader implements Request {
   private final String credential; // who
   private final String action;     // what

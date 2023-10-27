@@ -1,7 +1,11 @@
 package baseNoStates.doorstates;
 
 import baseNoStates.Door;
-
+/*
+*   Unlocked class:
+*   Most of the code regarding the change of the door status is here due to the fact that only when the door is unlocked
+*       can be either opened, closed or locked.
+*/
 public class Unlocked extends DoorState{
     public Unlocked(Door door) {
         super(door);

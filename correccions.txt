@@ -1,0 +1,2 @@
+We did not use the english language when commenting our code, so we corrected
+    that, improved the quality of those.

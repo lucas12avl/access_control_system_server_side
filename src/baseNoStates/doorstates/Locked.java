@@ -22,12 +22,6 @@ public class Locked extends DoorState{
     @Override
     public void lock() {
         System.out.println("Door already locked.");
-        /*if (!door.isClosed()) {
-            System.out.println("Can't lock door " + door.getId() + " because it is open.");
-        } else {
-            door.setStateName(name);
-        }
-        System.out.println("It is already locked.");*/
     }
 
     @Override

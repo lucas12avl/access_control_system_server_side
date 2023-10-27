@@ -18,7 +18,11 @@ public class Partition extends Area {
   public ArrayList<Door> getDoorsGivingAccess() { // go space by space obtaining all the doors it gives access to
 
     ArrayList<Door> inside_part_doors = new ArrayList<>(); //here we keep all the doors found within the partition
-    for (Area area : areas) {  //We go through all the areas that the partition has, these areas can be other partitions themselves, or areas that already contain doors
+    /*
+      We go through all the areas that the partition has, these areas can be other partitions themselves, or areas that
+        already contain doors
+     */
+    for (Area area : areas) {
 
       inside_part_doors.addAll(area.getDoorsGivingAccess());
     }

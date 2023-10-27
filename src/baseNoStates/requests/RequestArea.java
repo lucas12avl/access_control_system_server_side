@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-//tiene que importar las areas y las puertas
+// We have to import all areas and doors
 import baseNoStates.AreaSpaces.DirectoryAreas;
 import baseNoStates.AreaSpaces.*;
 

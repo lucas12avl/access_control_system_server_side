@@ -2,17 +2,25 @@ Alvaro Enrique Martin Chango NIU 16335979
 Guillem Luzon Benaiges NIU 1636257
 Lucas Dalmau Garces NIU 1636290
 
-// PONER AQUI QUE PARTES ESPECIFICAS A HECHO CADA UNO
-
 Guillem:
-I implemented the initial version of the doAction method, specifically a
-    rewrite of the Actions.OPEN section, the implementation of Actions.LOCK,
-    Actions.UNLOCK and Actions.UNLOCK_SHORTLY sections.
-A new variable String variable named "locked" was created, that indicated
-    the current status of the selected door, as in if it was locked or
-    unlocked.
-This new variable was added inside the Door constructor with all doors starting
-    with value "locked".
+I implemented an initial version of the doAction method, but that version got
+    scraped due to the fact that was extremely hardcoded, making it extremely
+    hard to maintain.
+In the new version I created 4 new classes, DoorState, Locked, Unlocked
+    and States.
+DoorState is an abstract class that holds the structure of each of the derived
+    classes, those being the Locked and Unlocked classes.
+Two things of note in the DoorState class are the setStateName method, which
+    changes the new state of the door and the getState() getter method which as
+    the name implies, it gets the current state of the door.
+I did the States class in an attempt to make it similar to the structure of the
+    Actions class.
+The Locked class, as it's constructor implies, changes the state of the door to
+    States.LOCKED which is a String with "locked" as it's value and the only
+    method that does something is "unlock".
+The Unlocked class has most of the code regarding the change of the door states
+    because the logic is that you can only do actions with the door when
+    it is unlocked, that being opening, closing and locking the door.
 
 Lucas:
 I implemented all the areas design, first of all, i removed the DirectoryDoors class and I created the new Directory area.
