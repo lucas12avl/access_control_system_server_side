@@ -1,12 +1,5 @@
-package baseNoStates.UsersGroups;
+package basenostates.usergroups;
 
-import baseNoStates.Actions;
-import baseNoStates.AreaSpaces.Area;
-
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import baseNoStates.UsersGroups.Times;
 import java.util.ArrayList;
 
 

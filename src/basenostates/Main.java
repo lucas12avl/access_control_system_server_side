@@ -1,10 +1,10 @@
-package baseNoStates;
+package basenostates;
 
 // Before executing enable assertions :
 // https://se-education.org/guides/tutorials/intellijUsefulSettings.html
 
-import baseNoStates.AreaSpaces.DirectoryAreas;
-import baseNoStates.UsersGroups.DirectoryUserGroups;
+import basenostates.areaspaces.DirectoryAreas;
+import basenostates.usergroups.DirectoryUserGroups;
 
 public class Main {
   public static void main(String[] args) {

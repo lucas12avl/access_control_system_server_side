@@ -1,4 +1,4 @@
-package baseNoStates.UsersGroups;
+package basenostates.usergroups;
 import java.time.LocalTime;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

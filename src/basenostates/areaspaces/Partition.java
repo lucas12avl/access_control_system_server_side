@@ -1,6 +1,6 @@
-package baseNoStates.AreaSpaces;
+package basenostates.areaspaces;
 
-import baseNoStates.Door;
+import basenostates.Door;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class Partition extends Area {
 
   public Area findAreaById(String id) {
     // if the id matches the name on the area, we have to return the area
-    if (this.AreaID.equals(id)) {
+    if (this.AreaId.equals(id)) {
       return this;
     }
     // If not, we go through the child areas and search recursively

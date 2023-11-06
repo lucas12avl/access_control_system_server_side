@@ -1,21 +1,18 @@
-package baseNoStates.AreaSpaces;
+package basenostates.areaspaces;
 
-
-import baseNoStates.Door;
-
+import basenostates.Door;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
-public final class DirectoryAreas { //makes the differents areas and doors
+public final class DirectoryAreas { // Creates the various areas and doors
 
  private static Area rootArea;
  private static ArrayList<Door> allDoors;
 
 
-
- public static void makeAreas() { // space(id + array<doors>) , partition(id + array areas)
+ // space(id + array<doors>) , partition(id + array areas)
+ public static void makeAreas() {
 
 
   //stairs
@@ -26,7 +23,7 @@ public final class DirectoryAreas { //makes the differents areas and doors
 
   /*--------*/
   //IT
-  Space IT = new Space("IT");
+  Space it = new Space("IT");
   //corridor
   Space corridor = new Space("corridor");
   //room3
@@ -38,7 +35,7 @@ public final class DirectoryAreas { //makes the differents areas and doors
   // add areas in floor1
   areasInFloor1.add(room3);
   areasInFloor1.add(corridor);
-  areasInFloor1.add(IT);
+  areasInFloor1.add(it);
   Partition floor1 = new Partition("floor1", areasInFloor1);
 
 
@@ -57,7 +54,7 @@ public final class DirectoryAreas { //makes the differents areas and doors
   areasInGF.add(room1);
   areasInGF.add(room2);
 
-  Partition ground_floor = new Partition("ground_floor",areasInGF);
+  Partition groundFloor = new Partition("ground_floor", areasInGF);
 
 
   /*--------*/
@@ -66,46 +63,42 @@ public final class DirectoryAreas { //makes the differents areas and doors
   //basement
   ArrayList<Area> areasInBasemenet = new ArrayList<>();
   areasInBasemenet.add(parking);
-  Partition basement = new Partition("basement",areasInBasemenet);
+  Partition basement = new Partition("basement", areasInBasemenet);
 
   /*--------*/
   //root
   ArrayList<Area> buildingToDoors = new ArrayList<>();
   buildingToDoors.add(basement);
-  buildingToDoors.add(ground_floor);
+  buildingToDoors.add(groundFloor);
   buildingToDoors.add(floor1);
   buildingToDoors.add(stairs);
   buildingToDoors.add(exterior);
   rootArea = new Partition("building", buildingToDoors);
 
-//We create the doors (id from to) in the constructor and they are automatically added to the area to which they give access since:
-  // area = set of doors that give access to an area (that's why they are added to the To)
+  /*
+     We create the doors (id from to) in the constructor.
+     Subsequently, they are automatically added to the area to which they give
+       access since:
+  */
+  // area = set of doors that give access to an area
+  //   (that's why they are added to the To)
   Door d1 = new Door("D1", exterior, parking); // exterior, parking
   Door d2 = new Door("D2", stairs, parking); // stairs, parking
 
-  // ground floor
+  // Ground floor
   Door d3 = new Door("D3", exterior, hall); // exterior, hall
   Door d4 = new Door("D4", stairs, hall); // stairs, hall
   Door d5 = new Door("D5", hall, room1); // hall, room1
   Door d6 = new Door("D6", hall, room2); // hall, room2
 
-  // first floor
+  // First floor
   Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
   Door d8 = new Door("D8", corridor, room3); // corridor, room3
-  Door d9 = new Door("D9", corridor, IT); // corridor, IT
+  Door d9 = new Door("D9", corridor, it); // corridor, IT
 
   allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
-
-
  }
-
-
-
-
-
- public static Area findAreaById(String nameArea){
-
-
+ public static Area findAreaById(final String nameArea) {
   Area result = null;
 
   if (rootArea != null) { //look if the root is null
@@ -121,7 +114,7 @@ public final class DirectoryAreas { //makes the differents areas and doors
  }
 
 
- public static Door findDoorById(String id) {
+ public static Door findDoorById(final String id) {
   for (Door door : allDoors) {
    if (door.getId().equals(id)) {
     return door;

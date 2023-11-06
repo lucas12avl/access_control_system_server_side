@@ -1,8 +1,8 @@
-package baseNoStates;
-import baseNoStates.AreaSpaces.Space;
-import baseNoStates.doorstates.DoorState;
-import baseNoStates.doorstates.Unlocked;
-import baseNoStates.requests.RequestReader;
+package basenostates;
+import basenostates.areaspaces.Space;
+import basenostates.doorstates.DoorState;
+import basenostates.doorstates.Unlocked;
+import basenostates.requests.RequestReader;
 
 import org.json.JSONObject;
 
@@ -13,8 +13,8 @@ public class Door {
 
 
   /*
-  * These two new variables have been added to indicate where the door sensor is on (from)
-  *   and where the door heads to (to).
+  * These two new variables have been added to indicate where the door sensor
+  *   is on (from) and where the door heads to (to).
   */
   private final Space from;
   private final Space to;
@@ -22,9 +22,9 @@ public class Door {
 
   // Added locked value
   private String locked;
-  DoorState currentState;
+  private DoorState currentState;
 
-  public Door(String id, Space desde, Space hacia) {
+  public Door(final String id, final Space desde, final Space hacia) {
 
     this.id = id;
     closed = true;
@@ -41,7 +41,7 @@ public class Door {
     this.to.addDoorsToSpace(this);
   }
 
-  public void processRequest(RequestReader request) {
+  public void processRequest(final RequestReader request) {
     // it is the Door that process the request because the door has and knows
     // its state, and if closed or open
     if (request.isAuthorized()) {
@@ -53,7 +53,7 @@ public class Door {
     request.setDoorStateName(getStateName());
   }
 
-  private void doAction(String action) {
+  private void doAction(final String action) {
     switch (action) {
       case Actions.OPEN:
         currentState.open();
@@ -79,7 +79,7 @@ public class Door {
     return closed;
   }
 
-  public void setClosed(boolean close) {
+  public void setClosed(final boolean close) {
     closed = close;
   }
 
@@ -98,7 +98,7 @@ public class Door {
   public String getStateName() {
     return currentState.getState();
   }
-  public void setState (DoorState newState) {
+  public void setState(final DoorState newState) {
     currentState = newState;
   }
 

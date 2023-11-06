@@ -1,9 +1,7 @@
-package baseNoStates.UsersGroups;
+package basenostates.usergroups;
 
 
-import baseNoStates.Actions;
-import baseNoStates.AreaSpaces.Space;
-import baseNoStates.Door;
+import basenostates.areaspaces.Space;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -70,7 +68,7 @@ public class User {
     // or just go to the space selected
 
     return switch (this.group.getGroupId()) {
-      case "Employee" -> this.group.getAreasAvailables().contains(space.getAreaID());
+      case "Employee" -> this.group.getAreasAvailables().contains(space.getAreaId());
       case "Manager" -> true;
       case "Admin" -> true;
       default -> false; //BLANK USERS HERE

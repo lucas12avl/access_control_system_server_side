@@ -1,8 +1,8 @@
-package baseNoStates.requests;
+package basenostates.requests;
 
 
 
-import baseNoStates.Actions;
+import basenostates.Actions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 // We have to import all areas and doors
-import baseNoStates.AreaSpaces.DirectoryAreas;
-import baseNoStates.AreaSpaces.*;
+import basenostates.areaspaces.DirectoryAreas;
+import basenostates.areaspaces.*;
 
-import baseNoStates.Door;
+import basenostates.Door;
 
 
 public class RequestArea implements Request {

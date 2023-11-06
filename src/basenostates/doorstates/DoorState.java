@@ -1,6 +1,6 @@
-package baseNoStates.doorstates;
+package basenostates.doorstates;
 
-import baseNoStates.Door;
+import basenostates.Door;
 
 // Abstract class that set each method used by each derived class.
 public abstract class DoorState {

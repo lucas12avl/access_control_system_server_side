@@ -1,7 +1,7 @@
 
-package baseNoStates.AreaSpaces;
+package basenostates.areaspaces;
 
-import baseNoStates.Door;
+import basenostates.Door;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class Space extends Area {
 
   public Area findAreaById(String id) {
     // if the id matches the name of the current space, we have to return this space
-    if (this.AreaID.equals(id)) {
+    if (this.AreaId.equals(id)) {
       return this;
     }
     // if not, return null

@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="base.Main" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
-    <option name="MAIN_CLASS_NAME" value="baseNoStates.Main" />
+    <option name="MAIN_CLASS_NAME" value="basenostates.Main" />
     <module name="acs_students" />
     <option name="PROGRAM_PARAMETERS" value="-ea" />
     <method v="2">

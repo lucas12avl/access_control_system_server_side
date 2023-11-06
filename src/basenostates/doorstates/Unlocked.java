@@ -1,6 +1,6 @@
-package baseNoStates.doorstates;
+package basenostates.doorstates;
 
-import baseNoStates.Door;
+import basenostates.Door;
 /*
 *   Unlocked class:
 *   Most of the code regarding the change of the door status is here due to the fact that only when the door is unlocked

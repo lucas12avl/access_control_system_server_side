@@ -1,9 +1,6 @@
-package baseNoStates.UsersGroups;
+package basenostates.usergroups;
 
-import baseNoStates.Actions;
-import baseNoStates.AreaSpaces.Area;
-import baseNoStates.AreaSpaces.DirectoryAreas;
-import baseNoStates.AreaSpaces.Partition;
+import basenostates.Actions;
 
 import java.util.ArrayList;
 
