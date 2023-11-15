@@ -7,7 +7,7 @@ import basenostates.areaspaces.DirectoryAreas;
 import basenostates.usergroups.DirectoryUserGroups;
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     // DirectoryDoors.makeDoors(); ya no hace falta
     DirectoryUserGroups.makeUserGroups();
     DirectoryAreas.makeAreas();

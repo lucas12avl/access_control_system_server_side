@@ -2,9 +2,9 @@ package basenostates.doorstates;
 
 import basenostates.Door;
 
-public class Locked extends DoorState{
+public class Locked extends DoorState {
 
-    public Locked(Door door) {
+    public Locked(final Door door) {
         super(door);
         this.setStateName(States.LOCKED);
     }
@@ -16,7 +16,8 @@ public class Locked extends DoorState{
 
     @Override
     public void close() {
-        System.out.println("Can't close the door because door it is already closed");
+        System.out.println(
+                "Can't close the door because door it is already closed");
     }
 
     @Override
@@ -30,5 +31,7 @@ public class Locked extends DoorState{
     }
 
     @Override
-    public String getState() { return States.LOCKED; }
+    public String getState() {
+        return States.LOCKED;
+    }
 }

@@ -21,7 +21,8 @@ public class RequestReader implements Request {
   private String doorStateName;
   private boolean doorClosed;
 
-  public RequestReader(String credential, String action, LocalDateTime now, String doorId) {
+  public RequestReader(final String credential, final String action, final LocalDateTime now,
+                       final String doorId) {
     this.credential = credential;
     this.action = action;
     this.doorId = doorId;
@@ -29,7 +30,7 @@ public class RequestReader implements Request {
     this.now = now;
   }
 
-  public void setDoorStateName(String name) {
+  public void setDoorStateName(final String name) {
     doorStateName = name;
   }
 
@@ -41,7 +42,7 @@ public class RequestReader implements Request {
     return authorized;
   }
 
-  public void addReason(String reason) {
+  public void addReason(final String reason) {
     reasons.add(reason);
   }
 
@@ -74,7 +75,8 @@ public class RequestReader implements Request {
     return json;
   }
 
-  // see if the request is authorized and put this into the request, then send it to the door.
+  // see if the request is authorized and put this into the request, then send
+  //  it to the door.
   // if authorized, perform the action.
   public void process() {
     User user = DirectoryUserGroups.findUserByCredential(credential);
@@ -83,14 +85,15 @@ public class RequestReader implements Request {
     authorize(user, door);
     // this sets the boolean authorize attribute of the request
     door.processRequest(this);
-    // even if not authorized we process the request, so that if desired we could log all
-    // the requests made to the server as part of processing the request
+    // even if not authorized we process the request, so that if desired we
+    //  could log all the requests made to the server as part of processing
+    //  the request
     doorClosed = door.isClosed();
   }
 
-  // the result is put into the request object plus, if not authorized, why not,
-  // only for testing
-  private void authorize(User user, Door door) {
+  // the result is put into the request object plus, if not authorized,
+  // why not, only for testing
+  private void authorize(final User user, final Door door) {
     if (user == null) {
       authorized = false;
       addReason("user doesn't exists");
@@ -98,33 +101,35 @@ public class RequestReader implements Request {
       boolean aut; //helps us to know the reasons
 
       aut = user.canSendRequest(now);
-      if(!aut){
+      if (!aut) {
         addReason("Can not send request, is not your date/time");
       }
 
 
       aut = user.canBeInSpace(door.getFrom());
-      if(!aut){
+      if (!aut) {
         addReason("Can not send request from here");
       }
 
 
       aut =  user.canBeInSpace(door.getTo());
-      if(!aut){
+      if (!aut) {
         addReason("Can not go there");
       }
 
 
 
       aut = user.canDoAction(action);
-      if(!aut){
+      if (!aut) {
         addReason("Can not do the requested action");
       }
 
 
 
-      authorized = user.canSendRequest(now) && user.canBeInSpace(door.getFrom()) &&
-          user.canBeInSpace(door.getTo()) && user.canDoAction(action);
+      authorized = user.canSendRequest(now)
+              && user.canBeInSpace(door.getFrom())
+              && user.canBeInSpace(door.getTo())
+              && user.canDoAction(action);
 
     }
   }

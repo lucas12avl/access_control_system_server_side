@@ -12,15 +12,15 @@ public abstract class Area {
   protected --> It is part of the derived classes, but those that are not
   derived must be accessed through getters and setters
   */
- protected String AreaId;
+ protected String areaId;
 
 
  public Area(final String id) {
-  this.AreaId = id;
+  this.areaId = id;
  }
 
  public String getAreaId() {
-  return AreaId;
+  return areaId;
  }
 
  public abstract Area findAreaById(String id);

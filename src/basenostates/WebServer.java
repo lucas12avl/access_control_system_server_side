@@ -26,7 +26,9 @@ public class WebServer {
   public WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
-      System.out.println("Server started.\nListening for connections on port : " + PORT + " ...\n");
+      System.out.println(
+              "Server started.\nListening for connections on port : "
+                      + PORT + " ...\n");
       // we listen until user halts server execution
       while (true) {
         // each client connection will be managed in a dedicated Thread
@@ -57,7 +59,8 @@ public class WebServer {
 
       try {
         // we read characters from the client via input stream on the socket
-        in = new BufferedReader(new InputStreamReader(insocked.getInputStream()));
+        in = new BufferedReader(new InputStreamReader(
+                insocked.getInputStream()));
         // we get character output stream to client
         out = new PrintWriter(insocked.getOutputStream());
         // get first line of the request from the client
@@ -67,7 +70,10 @@ public class WebServer {
         System.out.println("sockedthread : " + input);
 
         StringTokenizer parse = new StringTokenizer(input);
-        String method = parse.nextToken().toUpperCase(); // we get the HTTP method of the client
+
+        // we get the HTTP method of the client
+        String method = parse.nextToken().toUpperCase();
+
         if (!method.equals("GET")) {
           System.out.println("501 Not Implemented : " + method + " method.");
         } else {
@@ -79,7 +85,10 @@ public class WebServer {
 
           parse = new StringTokenizer(resource, "/[?]=&");
           int i = 0;
-          String[] tokens = new String[20]; // more than the actual number of parameters
+
+          // more than the actual number of parameters
+          String[] tokens = new String[20];
+
           while (parse.hasMoreTokens()) {
             tokens[i] = parse.nextToken();
             System.out.println(i + " " + tokens[i]);
@@ -90,11 +99,16 @@ public class WebServer {
           Request request = makeRequest(tokens);
           if (request != null) {
             String typeRequest = tokens[0];
-            System.out.println("created request " + typeRequest + " " + request);
+            System.out.println("created request " + typeRequest + " "
+                    + request);
             request.process();
-            System.out.println("processed request " + typeRequest + " " + request);
-            // Make the answer as a JSON string, to be sent to the Javascript client
+            System.out.println("processed request " + typeRequest + " "
+                    + request);
+
+            // Make the answer as a JSON string, to be sent to the Javascript
+            //  client
             String answer = makeJsonAnswer(request);
+
             System.out.println("answer\n" + answer);
             // Here we send the response to the client
             out.println(answer);
@@ -110,8 +124,9 @@ public class WebServer {
       }
     }
 
-    private Request makeRequest(String[] tokens) {
-      // always return request because it contains the answer for the Javascript client
+    private Request makeRequest(final String[] tokens) {
+      // always return request because it contains the answer for the
+      //  Javascript client
       System.out.print("tokens : ");
       for (String token : tokens) {
         System.out.print(token + ", ");
@@ -119,7 +134,8 @@ public class WebServer {
       System.out.println();
 
       Request request;
-      // assertions below evaluated to false won't stop the webserver, just print an
+      // assertions below evaluated to false won't stop the webserver, just
+      //  print an
       // assertion error, maybe because the webserver runs in a socked thread
       switch (tokens[0]) {
         case "refresh":
@@ -132,8 +148,9 @@ public class WebServer {
           request = makeRequestArea(tokens);
           break;
         case "get_children":
-          //TODO: this is to be implemented when programming the mobile app in Flutter
-          // in order to navigate the hierarchy of partitions, spaces and doors
+          //TODO: this is to be implemented when programming the mobile app in
+          // Flutter in order to navigate the hierarchy of partitions, spaces
+          // and doors
           assert false : "request get_children is not yet implemented";
           request = null;
           System.exit(-1);
@@ -147,7 +164,7 @@ public class WebServer {
       return request;
     }
 
-    private RequestReader makeRequestReader(String[] tokens) {
+    private RequestReader makeRequestReader(final String[] tokens) {
       String credential = tokens[2];
       String action = tokens[4];
       LocalDateTime dateTime = LocalDateTime.parse(tokens[6], formatter);
@@ -155,7 +172,7 @@ public class WebServer {
       return new RequestReader(credential, action, dateTime, doorId);
     }
 
-    private RequestArea makeRequestArea(String[] tokens) {
+    private RequestArea makeRequestArea(final String[] tokens) {
       String credential = tokens[2];
       String action = tokens[4];
       LocalDateTime dateTime = LocalDateTime.parse(tokens[6], formatter);
@@ -169,13 +186,16 @@ public class WebServer {
       answer += "Content-type: application/json\r\n";
       answer += "Access-Control-Allow-Origin: *\r\n";
       // SUPERIMPORTANT to avoid the CORS problem :
-      // "Cross-Origin Request Blocked: The Same Origin Policy disallows reading
-      // the remote resource..."
-      answer += "\r\n"; // blank line between headers and content, very important !
+      // "Cross-Origin Request Blocked: The Same Origin Policy disallows
+      // reading the remote resource..."
+
+      // blank line between headers and content, very important !
+      answer += "\r\n";
+
       return answer;
     }
 
-    private String makeJsonAnswer(Request request) {
+    private String makeJsonAnswer(final Request request) {
       String answer = makeHeaderAnswer();
       answer += request.answerToJson().toString();
       return answer;

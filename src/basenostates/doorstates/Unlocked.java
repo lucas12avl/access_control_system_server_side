@@ -3,11 +3,12 @@ package basenostates.doorstates;
 import basenostates.Door;
 /*
 *   Unlocked class:
-*   Most of the code regarding the change of the door status is here due to the fact that only when the door is unlocked
-*       can be either opened, closed or locked.
+*   Most of the code regarding the change of the door status is here due to the
+*       fact that only when the door is unlocked can be either opened, closed
+*       or locked.
 */
-public class Unlocked extends DoorState{
-    public Unlocked(Door door) {
+public class Unlocked extends DoorState {
+    public Unlocked(final Door door) {
         super(door);
         this.setStateName(States.UNLOCKED);
     }
@@ -17,16 +18,16 @@ public class Unlocked extends DoorState{
         if (this.door.isClosed()) {
             this.door.setClosed(false);
         } else {
-            System.out.println("Can't open door " + this.door.getId() + " because it's already "
-                    + "open");
+            System.out.println("Can't open door " + this.door.getId()
+                    + " because it's already " + "open");
         }
     }
 
     @Override
     public void close() {
         if (this.door.isClosed()) {
-            System.out.println("Can't close door " + door.getId() + " because it's already "
-                    + "closed");
+            System.out.println("Can't close door " + door.getId()
+                    + " because it's already " + "closed");
         } else {
             this.door.setClosed(true);
         }
@@ -43,5 +44,7 @@ public class Unlocked extends DoorState{
     }
 
     @Override
-    public String getState() {return States.UNLOCKED;}
+    public String getState() {
+        return States.UNLOCKED;
+    }
 }

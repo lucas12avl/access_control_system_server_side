@@ -7,33 +7,31 @@ import java.util.ArrayList;
 public class Partition extends Area {
   private final ArrayList<Area> areas;
 
-  public Partition(String namePartition, ArrayList<Area> areas){
+  public Partition(final String namePartition, final ArrayList<Area> areas) {
 
     super(namePartition);
     this.areas = areas;
 
   }
-
+  // go space by space obtaining all the doors it gives access to
   @Override
-  public ArrayList<Door> getDoorsGivingAccess() { // go space by space obtaining all the doors it gives access to
-
-    ArrayList<Door> inside_part_doors = new ArrayList<>(); //here we keep all the doors found within the partition
+  public ArrayList<Door> getDoorsGivingAccess() {
+    //here we keep all the doors found within the partition
+    ArrayList<Door> insidePartDoors = new ArrayList<>();
     /*
-      We go through all the areas that the partition has, these areas can be other partitions themselves, or areas that
-        already contain doors
+      We go through all the areas that the partition has, these areas can be
+        other partitions themselves, or areas that already contain doors
      */
     for (Area area : areas) {
 
-      inside_part_doors.addAll(area.getDoorsGivingAccess());
+      insidePartDoors.addAll(area.getDoorsGivingAccess());
     }
-    return inside_part_doors;
+    return insidePartDoors;
   }
 
-
-
-  public Area findAreaById(String id) {
+  public Area findAreaById(final String id) {
     // if the id matches the name on the area, we have to return the area
-    if (this.AreaId.equals(id)) {
+    if (this.areaId.equals(id)) {
       return this;
     }
     // If not, we go through the child areas and search recursively
@@ -47,8 +45,4 @@ public class Partition extends Area {
     // if area not found, return null
     return null;
   }
-
-
-
-
 }
