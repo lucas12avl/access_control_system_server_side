@@ -7,6 +7,7 @@ public abstract class DoorState {
     /* Must be protected so that derived classes can access this door */
     protected Door door;
     protected String name;
+
     public DoorState(final Door door) {
         this.door = door;
     }
@@ -15,6 +16,7 @@ public abstract class DoorState {
     public abstract void close();
     public abstract void lock();
     public abstract void unlock();
+
     // Set the state of the door
     public void setStateName(final String nouEstat) {
         this.name = nouEstat;

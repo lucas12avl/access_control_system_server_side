@@ -11,9 +11,12 @@ public final class DirectoryAreas { // Creates the various areas and doors
  private static ArrayList<Door> allDoors;
 
 
- // space(id + array<doors>) , partition(id + array areas)
+ /* space(id + array<doors>) , partition(id + array areas)
+ *
+ *
+ *
+ */
  public static void makeAreas() {
-
 
   //stairs
   Space stairs = new Space("stairs");
