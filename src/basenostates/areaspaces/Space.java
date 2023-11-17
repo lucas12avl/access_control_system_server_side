@@ -20,7 +20,6 @@ public class Space extends Area {
     return doors;
   }
 
-
   public Area findAreaById(final String id) {
     // if the id matches the name of the current space, we have to return this
     //  space

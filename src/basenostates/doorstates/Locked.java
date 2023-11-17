@@ -25,6 +25,10 @@ public class Locked extends DoorState {
         System.out.println("Door already locked.");
     }
 
+    /*
+    * If the door is locked, change the status to Unlocked indicating that
+    *   it now goes to the Unlocked class.
+     */
     @Override
     public void unlock() {
         door.setState(new Unlocked(door));

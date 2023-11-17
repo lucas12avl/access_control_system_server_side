@@ -12,9 +12,10 @@ public final class DirectoryAreas { // Creates the various areas and doors
 
 
  /* space(id + array<doors>) , partition(id + array areas)
- *
- *
- *
+ * This function focuses on the creation and selection of each area and
+ *   partition of the ACS.
+ * Initially it creates and selects each space, then it is put inside an Area.
+ * This happens for floor 1, ground floor, and basement.
  */
  public static void makeAreas() {
 
@@ -64,9 +65,9 @@ public final class DirectoryAreas { // Creates the various areas and doors
   //parking
   Space parking = new Space("parking");
   //basement
-  ArrayList<Area> areasInBasemenet = new ArrayList<>();
-  areasInBasemenet.add(parking);
-  Partition basement = new Partition("basement", areasInBasemenet);
+  ArrayList<Area> areasInBasement = new ArrayList<>();
+  areasInBasement.add(parking);
+  Partition basement = new Partition("basement", areasInBasement);
 
   /*--------*/
   //root
