@@ -1,8 +1,12 @@
 package basenostates.doorstates;
 
 import basenostates.Door;
+import basenostates.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Locked extends DoorState {
+    private static final Logger logger = LoggerFactory.getLogger(Locked.class);
 
     public Locked(final Door door) {
         super(door);
@@ -11,19 +15,23 @@ public class Locked extends DoorState {
 
     @Override
     public void open() {
-        System.out.println("Can't open the door" + this.door.getId() + "because it is locked");
+        logger.info("Can't open the door" + this.door.getId() + "because it is locked");
+        //System.out.println("Can't open the door" + this.door.getId() + "because it is locked");
     }
 
 
     @Override
     public void close() {
-        System.out.println(
-            "Can't open the door " + this.door.getId() + " because it is already closed");
+        logger.info("Can't open the door " + this.door.getId()
+                + " because it is already closed");
+        //System.out.println(
+        //    "Can't open the door " + this.door.getId() + " because it is already closed");
     }
 
     @Override
     public void lock() {
-        System.out.println("Door " + this.door.getId() + " already locked.");
+        logger.info("Door " + this.door.getId() + " already locked.");
+        //System.out.println("Door " + this.door.getId() + " already locked.");
     }
 
     /*

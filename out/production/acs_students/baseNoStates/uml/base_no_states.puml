@@ -86,7 +86,7 @@ class Space {
 class DirectoryAreas {
 - {static} rootArea : Area
 - {static} allDoors : ArrayList<Door>
-+ {static} void makeAreas()
++ {static} makeAreas()
 + {static} Area findAreaById(nameArea : String) : Area
 + {static} ArrayList<Door> getAllDoors() : ArrayList<Door>
 + {static} Door findDoorById(id : String) : Door
@@ -104,7 +104,7 @@ class Partition {
 + Space(nameSpace : String)
 + ArrayList<Door> getDoorsGivingAccess() : ArrayList<Door>
 + Area findAreaById(id : String)
-+ void addDoorsToSpace(puerta : Door)
++  addDoorsToSpace(puerta : Door)
 }
 
 'doorstates
@@ -120,42 +120,46 @@ abstract class DoorState {
 # door : Door
 # name : String
 + DoorState(door : Door)
-+ abstract void open()
-+ abstract void close()
-+ abstract void lock()
-+ abstract void unlock()
-+ void setStateName(nouEstat : String)
++ abstract open()
++ abstract close()
++ abstract lock()
++ abstract unlock()
++ setStateName(nouEstat : String)
 + String getState() : String
 }
 
 class Locked {
 + Locked(door : Door)
-+ void open()
-+ void close()
-+ void lock()
-+ void unlock()
-+ String getState() : String
++ open()
++ close()
++ lock()
++ unlock()
++ unlockShortly()
++ getState() : String
 }
 
 class States {
 + LOCKED : String
 + UNLOCKED : String
++ UNLOCK_SHORTLY : String
++ PROPPED : string
 }
 
 class Unlocked {
 + Unlocked(door : Door)
-+ void open()
-+ void close()
-+ void lock()
-+ void unlock()
-+ String getState() : String
++ open()
++ close()
++ lock()
++ unlock()
++ unlockShortly()
++  getState() : String
 }
 
 'requests
 interface Request {
 + JSONObject answerToJson() : JSONObject
 + String toString() : String
-+ void process()
++ process()
 }
 
 class RequestArea {
@@ -168,7 +172,7 @@ class RequestArea {
 + String getAction() : String
 + JSONObject answerToJson() : JSONObject
 + String toString() : String
-+ void process()
++ process()
 }
 
 class RequestReader {
@@ -183,21 +187,21 @@ class RequestReader {
 - doorStateName : String
 - doorClosed : boolean
 + RequestReader(credential : String, action : String, now : LocalDateTime, doorId : String)
-+ void setDoorStateName(name : String)
++  setDoorStateName(name : String)
 + getAction() : String
 + isAuthorized() : boolean
-+ void addReason(reason : String)
++  addReason(reason : String)
 + String toString() : String
 + JSONObject answerToJson() : JSONObject
-+ void process()
-+ void authorize(user : User, door : Door)
++  process()
++  authorize(user : User, door : Door)
 }
 
 class RequestRefresh {
 - jsonsDoors : ArrayList<JSONObject>
 + JSONObject answerToJson() : JSONObject
 + String toString() : String
-+ void process()
++  process()
 }
 
 'UsersGroups
@@ -205,7 +209,7 @@ class DirectoryUserGroups {
 - {static} groups : ArrayList<UserGroup>
 - {static} users : ArrayList<User>
 + findUserByCredential(credential : String): User
-+ {static} void makeUserGroups()
++ {static}  makeUserGroups()
 }
 
 class Times {
@@ -238,11 +242,62 @@ class UserGroup {
 + String getGroupId(): String
 + ArrayList<User> getUserList() : ArrayList<User>
 + ArrayList<String> getAreasAvailables(): ArrayList<String>
-+ void setAreasAvailables(areasNotAvailables : ArrayList<String>)
++ setAreasAvailables(areasNotAvailables : ArrayList<String>)
 + ArrayList<String> getGroupActions(): ArrayList<String>
-+ void setActionsAvailable(action: String)
-+ void setUser(user : User)
++ setActionsAvailable(action: String)
++ setUser(user : User)
 }
+
+class Clock{
+- {static} instance : Clock
+- timer : Timer {final}
+- Clock()
++ {static} getInstance() : Clock
++ start()
+}
+ Observable <|--"1"  Clock
+interface Observer{
+- update (ob : Observable, time : Object)
+}
+
+abstract Observable{
+- changed : boolean
++ Observable ()
++ addObserver()
++ deleteObserver()
++ setChanged(change : boolean)
++ getChanged() : boolean
++ notifyObservers(actualTime : LocalDateTime)
+}
+Observable o--> "observers* " Observer
+
+class UnlockedShortly{
+- period : int {final}
+- ticks : int
++ UnlockedShortly {door : Door}
++ Unlocked(door : Door)
++ open()
++ close()
++ lock()
++ unlock()
++ unlockShortly()
++ update (ob :Observable, time : Object)
++ getState() : String
+}
+
+class Propped{
++ Propped(door : Door)
++ open()
++ close()
++ lock()
++ unlock()
++ unlockShortly()
++ getState() : String
+
+}
+
+Observer <|--  UnlockedShortly
+DoorState <|--  UnlockedShortly
 
 'relations
 '   Usersgroups
@@ -261,9 +316,9 @@ Area <|-- Space
 '   doorstates
 DoorState <-- Door
 Locked <-- Door
-Locked <|-- DoorState
+Locked --|> DoorState
 Unlocked <-- Door
-Unlocked <|-- DoorState
+Unlocked --|> DoorState
 
 '   requests
 RequestArea <-- Actions
