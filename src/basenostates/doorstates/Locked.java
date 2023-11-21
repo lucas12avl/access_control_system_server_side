@@ -11,18 +11,19 @@ public class Locked extends DoorState {
 
     @Override
     public void open() {
-        System.out.println("Can't open the door because door is locked");
+        System.out.println("Can't open the door" + this.door.getId() + "because it is locked");
     }
+
 
     @Override
     public void close() {
         System.out.println(
-                "Can't close the door because door it is already closed");
+            "Can't open the door " + this.door.getId() + " because it is already closed");
     }
 
     @Override
     public void lock() {
-        System.out.println("Door already locked.");
+        System.out.println("Door " + this.door.getId() + " already locked.");
     }
 
     /*
@@ -32,10 +33,20 @@ public class Locked extends DoorState {
     @Override
     public void unlock() {
         door.setState(new Unlocked(door));
+
     }
 
     @Override
     public String getState() {
         return States.LOCKED;
     }
+
+    @Override
+    public void unlockShortly(){
+        door.setState(new UnlockedShortly(door));
+    }
+
+
 }
+
+

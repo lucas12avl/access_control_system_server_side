@@ -68,6 +68,7 @@ public class Door {
         currentState.unlock();
         break;
       case Actions.UNLOCK_SHORTLY:
+        currentState.unlockShortly();
         break;
       default:
         assert false : "Unknown action " + action;

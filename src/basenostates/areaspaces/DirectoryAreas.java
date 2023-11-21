@@ -1,9 +1,11 @@
 package basenostates.areaspaces;
 
+
 import basenostates.Door;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 
 public final class DirectoryAreas { // Creates the various areas and doors
 

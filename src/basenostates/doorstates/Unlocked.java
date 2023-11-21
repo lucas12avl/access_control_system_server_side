@@ -19,7 +19,7 @@ public class Unlocked extends DoorState {
             this.door.setClosed(false);
         } else {
             System.out.println("Can't open door " + this.door.getId()
-                    + " because it's already " + "open");
+                + " because it's already " + "open");
         }
     }
 
@@ -27,7 +27,7 @@ public class Unlocked extends DoorState {
     public void close() {
         if (this.door.isClosed()) {
             System.out.println("Can't close door " + door.getId()
-                    + " because it's already " + "closed");
+                + " because it's already " + "closed");
         } else {
             this.door.setClosed(true);
         }
@@ -42,9 +42,18 @@ public class Unlocked extends DoorState {
     public void unlock() {
         door.setState(new Unlocked(door));
     }
+    @Override
+    public void unlockShortly() {
+        System.out.println("Can't unlock shortly the door " + door.getId()
+            + " because it's already unlocked");
+
+    }
+
 
     @Override
     public String getState() {
         return States.UNLOCKED;
     }
+
+
 }

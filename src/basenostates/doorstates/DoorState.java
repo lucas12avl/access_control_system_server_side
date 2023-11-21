@@ -16,6 +16,7 @@ public abstract class DoorState {
     public abstract void close();
     public abstract void lock();
     public abstract void unlock();
+    public abstract void unlockShortly();
 
     // Set the state of the door
     public void setStateName(final String nouEstat) {
