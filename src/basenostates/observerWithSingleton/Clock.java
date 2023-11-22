@@ -44,10 +44,4 @@ public class Clock extends Observable{
 
   }
 
-
-
-
-
-
-
 }

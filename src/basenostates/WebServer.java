@@ -1,9 +1,12 @@
 package basenostates;
 
+import basenostates.doorstates.Locked;
 import basenostates.requests.Request;
 import basenostates.requests.RequestReader;
 import basenostates.requests.RequestRefresh;
 import basenostates.requests.RequestArea;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +22,7 @@ import java.util.StringTokenizer;
 // https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
 // http://www.jcgonzalez.com/java-socket-mini-server-http-example
 public class WebServer {
+  private static final Logger logger = LoggerFactory.getLogger(WebServer.class);
   private static final int PORT = 8080; // port to listen connection
   private static final DateTimeFormatter formatter =
           DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -26,7 +30,7 @@ public class WebServer {
   public WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
-      System.out.println(
+      logger.info(
               "Server started.\nListening for connections on port : "
                       + PORT + " ...\n");
       // we listen until user halts server execution
@@ -36,7 +40,7 @@ public class WebServer {
         // create dedicated thread to manage the client connection
       }
     } catch (IOException e) {
-      System.err.println("Server Connection error : " + e.getMessage());
+      logger.info("Server Connection error : " + e.getMessage());
     }
   }
 
@@ -67,7 +71,7 @@ public class WebServer {
         String input = in.readLine();
         // we parse the request with a string tokenizer
 
-        System.out.println("sockedthread : " + input);
+        logger.info("sockedthread : " + input);
 
         StringTokenizer parse = new StringTokenizer(input);
 
@@ -75,13 +79,13 @@ public class WebServer {
         String method = parse.nextToken().toUpperCase();
 
         if (!method.equals("GET")) {
-          System.out.println("501 Not Implemented : " + method + " method.");
+          logger.info("501 Not Implemented : " + method + " method.");
         } else {
           // what comes after "localhost:8080"
           resource = parse.nextToken();
-          System.out.println("input " + input);
-          System.out.println("method " + method);
-          System.out.println("resource " + resource);
+          logger.info("input " + input);
+          logger.info("method " + method);
+          logger.info("resource " + resource);
 
           parse = new StringTokenizer(resource, "/[?]=&");
           int i = 0;
@@ -91,7 +95,7 @@ public class WebServer {
 
           while (parse.hasMoreTokens()) {
             tokens[i] = parse.nextToken();
-            System.out.println(i + " " + tokens[i]);
+            logger.info(i + " " + tokens[i]);
             i++;
           }
 
@@ -99,17 +103,17 @@ public class WebServer {
           Request request = makeRequest(tokens);
           if (request != null) {
             String typeRequest = tokens[0];
-            System.out.println("created request " + typeRequest + " "
+            logger.info("created request " + typeRequest + " "
                     + request);
             request.process();
-            System.out.println("processed request " + typeRequest + " "
+            logger.info("processed request " + typeRequest + " "
                     + request);
 
             // Make the answer as a JSON string, to be sent to the Javascript
             //  client
             String answer = makeJsonAnswer(request);
 
-            System.out.println("answer\n" + answer);
+            logger.info("answer\n" + answer);
             // Here we send the response to the client
             out.println(answer);
             out.flush(); // flush character output stream buffer
@@ -120,7 +124,7 @@ public class WebServer {
         out.close();
         insocked.close(); // we close socket connection
       } catch (Exception e) {
-        System.err.println("Exception : " + e);
+        logger.info("Exception : " + e);
       }
     }
 

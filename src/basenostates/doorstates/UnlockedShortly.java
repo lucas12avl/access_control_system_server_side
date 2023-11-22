@@ -4,15 +4,20 @@ import basenostates.Door;
 import basenostates.observerWithSingleton.Clock;
 import basenostates.observerWithSingleton.Observable;
 import basenostates.observerWithSingleton.Observer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UnlockedShortly extends DoorState implements Observer {
 
-/* once we get an instance of this class, we must 'subscribe to the observable clock, and hold this state until the clock observer updates 10 times.
- * this 10 updates (1 per second)  will increase the ticks count, the state checks if the door is closed, if it's closed, returns the door to the locked state if not,
- *it will put the propped until it closes
+/*
+ once we get an instance of this class, we must subscribe to the observable
+ clock, and hold this state until the clock observer updates 10 times.
+ this 10 updates (1 per second)  will increase the ticks count, the state
+ checks if the door is closed, if it's closed, returns the door to the locked
+ state if not, it will put the propped until it closes
  */
+  private static final Logger logger = LoggerFactory.getLogger(UnlockedShortly.class);
   private final int period = 10;
-
   private int ticks = 0;
 
   public UnlockedShortly(final Door door) {
@@ -27,7 +32,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (this.door.isClosed()) {
       this.door.setClosed(false);
     } else {
-      System.out.println("Can't open door " + this.door.getId()
+      logger.info("Can't open door " + this.door.getId()
           + " because it's already " + "open");
     }
   }
@@ -35,7 +40,7 @@ public class UnlockedShortly extends DoorState implements Observer {
   @Override
   public void close() {
     if (this.door.isClosed()) {
-      System.out.println("Can't close door " + door.getId()
+      logger.info("Can't close door " + door.getId()
           + " because it's already " + "closed");
     } else {
       this.door.setClosed(true);
@@ -44,19 +49,22 @@ public class UnlockedShortly extends DoorState implements Observer {
 
   @Override
   public void lock(){
-    System.out.println("Can't lock de door" + door.getId() + "manually because it will be closed automatically after 10s ");
+    logger.info("Can't lock de door"
+            + door.getId()
+            + "manually because it will be closed automatically after 10s ");
   }
 
   @Override
   public void unlock(){
-    System.out.println("Can't unlock de door" + door.getId() + "manually because it will remain unlocked during 10s ");
-
+    logger.info("Can't unlock de door"
+            + door.getId()
+            + "manually because it will remain unlocked during 10s ");
 
   }
 
   @Override
   public void unlockShortly() {
-    System.out.println("Door already unlocked shortly.");
+    logger.info("Door already unlocked shortly.");
   }
 
   @Override //observer
@@ -69,7 +77,7 @@ public class UnlockedShortly extends DoorState implements Observer {
       } else {
         door.setState(new Propped(door));
       }
-      System.out.println("\n \n NUMERO DE TICKS QUE LLEVAMOS = " + ticks );
+      logger.info("\n \n Current Tick Amount = " + ticks );
 
 
       Clock.getInstance().deleteObserver(this);

@@ -1,6 +1,9 @@
 package basenostates.doorstates;
 
 import basenostates.Door;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /*
 *   Unlocked class:
 *   Most of the code regarding the change of the door status is here due to the
@@ -8,6 +11,8 @@ import basenostates.Door;
 *       or locked.
 */
 public class Unlocked extends DoorState {
+
+    private static final Logger logger = LoggerFactory.getLogger(Unlocked.class);
     public Unlocked(final Door door) {
         super(door);
         this.setStateName(States.UNLOCKED);
@@ -18,7 +23,8 @@ public class Unlocked extends DoorState {
         if (this.door.isClosed()) {
             this.door.setClosed(false);
         } else {
-            System.out.println("Can't open door " + this.door.getId()
+
+            logger.info("Can't open door " + this.door.getId()
                 + " because it's already " + "open");
         }
     }
@@ -26,7 +32,7 @@ public class Unlocked extends DoorState {
     @Override
     public void close() {
         if (this.door.isClosed()) {
-            System.out.println("Can't close door " + door.getId()
+            logger.info("Can't close door " + door.getId()
                 + " because it's already " + "closed");
         } else {
             this.door.setClosed(true);
@@ -44,7 +50,7 @@ public class Unlocked extends DoorState {
     }
     @Override
     public void unlockShortly() {
-        System.out.println("Can't unlock shortly the door " + door.getId()
+        logger.info("Can't unlock shortly the door " + door.getId()
             + " because it's already unlocked");
 
     }

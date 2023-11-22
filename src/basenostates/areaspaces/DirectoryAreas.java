@@ -2,6 +2,9 @@ package basenostates.areaspaces;
 
 
 import basenostates.Door;
+import basenostates.doorstates.Locked;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +12,7 @@ import java.util.Arrays;
 
 public final class DirectoryAreas { // Creates the various areas and doors
 
+ private static final Logger logger = LoggerFactory.getLogger(DirectoryAreas.class);
  private static Area rootArea;
  private static ArrayList<Door> allDoors;
 
@@ -126,7 +130,7 @@ public final class DirectoryAreas { // Creates the various areas and doors
     return door;
    }
   }
-  System.out.println("door with id " + id + " not found");
+  logger.info("door with id " + id + " not found");
   return null; // otherwise we get a Java error
  }
 

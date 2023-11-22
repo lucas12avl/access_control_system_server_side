@@ -1,5 +1,9 @@
 package basenostates.observerWithSingleton;
 
+import basenostates.doorstates.Locked;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -10,9 +14,10 @@ import java.util.ArrayList;
 *
 * */
 public abstract class Observable {
-
-private final ArrayList<Observer> observers;
-private boolean changed;
+  private static final Logger logger =
+          LoggerFactory.getLogger(Observable.class);
+  private final ArrayList<Observer> observers;
+  private boolean changed;
 
 
   public Observable() {
@@ -25,7 +30,7 @@ private boolean changed;
   }
   public void deleteObserver(Observer ob){
     if (!this.observers.remove(ob)){
-      System.out.println("the observer can't be removed because doesn't exists");
+      logger.info("the observer can't be removed because doesn't exists");
     }
   }
 
@@ -48,10 +53,6 @@ private boolean changed;
       }
     }
   }
-
-
-
-
 
 }
 
