@@ -30,7 +30,7 @@ public abstract class Observable {
   }
   public void deleteObserver(Observer ob){
     if (!this.observers.remove(ob)){
-      logger.error("the observer can't be removed because doesn't exists");
+      logger.error("the observer can't be removed because it doesn't exist");
     }
   }
 
