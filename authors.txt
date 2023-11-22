@@ -3,6 +3,7 @@ Guillem Luzon Benaiges NIU 1636257
 Lucas Dalmau Garces NIU 1636290
 
 Guillem:
+1st Milestone
 I implemented an initial version of the doAction method, but that version got
     scraped due to the fact that was extremely hardcoded, making it extremely
     hard to maintain.
@@ -21,6 +22,14 @@ The Locked class, as it's constructor implies, changes the state of the door to
 The Unlocked class has most of the code regarding the change of the door states
     because the logic is that you can only do actions with the door when
     it is unlocked, that being opening, closing and locking the door.
+2nd Milestone
+I focused on making the contents of all classes to follow the SUN coding style
+    using the CheckStyle Plugin, both comments, making variables and class
+    names follow the SUN style naming conventions, adding final to each
+    variable and specifying when a rule could not be implemented.
+I implemented logback into the project. It creates a html file into the /logs
+    directory, and depending on the logback.xml root attribute "level" logback
+    appends each log into that file.
 
 Lucas:
 I implemented all the areas design, first of all, i removed the DirectoryDoors class and I created the new Directory area.
