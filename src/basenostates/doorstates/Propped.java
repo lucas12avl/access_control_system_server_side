@@ -19,30 +19,43 @@ public class Propped extends DoorState {
 
   @Override
   public void open() {
-    logger.info("The door " + this.door.getId() + " is already open because is propped");
+    logger.warn("The door "
+            + this.door.getId()
+            + " is already open because is propped");
   }
 
   @Override
   public void close() {
 
     this.door.setClosed(true);
-    logger.info("The propped door " + this.door.getId() + " is now closed, changing door state to locked");
+    logger.debug("The propped door "
+            + this.door.getId()
+            + " is now closed, changing door state to locked");
     door.setState(new Locked(door));
   }
 
   @Override
   public void lock() {
-    logger.info("The door " + this.door.getId() + " can't be locked because is propped, please close the door before");
+    logger.warn("The door "
+            + this.door.getId()
+            + " can't be locked because is propped"
+            + " please close the door before");
   }
 
   @Override
   public void unlock() {
-    logger.info("The door " + this.door.getId() + " can't be unlocked because isn't locked yet. Please, close teh door before");
+    logger.warn("The door "
+            + this.door.getId()
+            + " can't be unlocked because isn't locked yet."
+            + " Please, close the door before");
   }
 
   @Override
   public void unlockShortly() {
-    logger.info("The door " + this.door.getId() + " is already open and unlocked. Please, close teh door before");
+    logger.warn("The door "
+            + this.door.getId()
+            + " is already open and unlocked. "
+            + " Please, close the door before");
   }
 
   @Override

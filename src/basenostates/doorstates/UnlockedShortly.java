@@ -32,7 +32,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (this.door.isClosed()) {
       this.door.setClosed(false);
     } else {
-      logger.info("Can't open door " + this.door.getId()
+      logger.warn("Can't open door " + this.door.getId()
           + " because it's already " + "open");
     }
   }
@@ -40,7 +40,7 @@ public class UnlockedShortly extends DoorState implements Observer {
   @Override
   public void close() {
     if (this.door.isClosed()) {
-      logger.info("Can't close door " + door.getId()
+      logger.warn("Can't close door " + door.getId()
           + " because it's already " + "closed");
     } else {
       this.door.setClosed(true);
@@ -49,14 +49,14 @@ public class UnlockedShortly extends DoorState implements Observer {
 
   @Override
   public void lock(){
-    logger.info("Can't lock de door"
+    logger.warn("Can't lock de door"
             + door.getId()
             + "manually because it will be closed automatically after 10s ");
   }
 
   @Override
   public void unlock(){
-    logger.info("Can't unlock de door"
+    logger.warn("Can't unlock de door"
             + door.getId()
             + "manually because it will remain unlocked during 10s ");
 
@@ -77,7 +77,7 @@ public class UnlockedShortly extends DoorState implements Observer {
       } else {
         door.setState(new Propped(door));
       }
-      logger.info("\n \n Current Tick Amount = " + ticks );
+      logger.debug("\n \n Current Tick Amount = " + ticks );
 
 
       Clock.getInstance().deleteObserver(this);

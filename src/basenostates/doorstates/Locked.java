@@ -15,22 +15,23 @@ public class Locked extends DoorState {
 
     @Override
     public void open() {
-        logger.info("Can't open the door" + this.door.getId() + "because it is locked");
+        logger.warn("Can't open the door"
+                + this.door.getId()
+                + "because it is locked");
         //System.out.println("Can't open the door" + this.door.getId() + "because it is locked");
     }
 
 
     @Override
     public void close() {
-        logger.info("Can't open the door " + this.door.getId()
+        logger.warn("Can't open the door "
+                + this.door.getId()
                 + " because it is already closed");
-        //System.out.println(
-        //    "Can't open the door " + this.door.getId() + " because it is already closed");
     }
 
     @Override
     public void lock() {
-        logger.info("Door " + this.door.getId() + " already locked.");
+        logger.warn("Door " + this.door.getId() + " already locked.");
         //System.out.println("Door " + this.door.getId() + " already locked.");
     }
 
@@ -56,5 +57,3 @@ public class Locked extends DoorState {
 
 
 }
-
-

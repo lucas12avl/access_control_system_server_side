@@ -130,7 +130,7 @@ public final class DirectoryAreas { // Creates the various areas and doors
     return door;
    }
   }
-  logger.info("door with id " + id + " not found");
+  logger.error("door with id " + id + " not found");
   return null; // otherwise we get a Java error
  }
 

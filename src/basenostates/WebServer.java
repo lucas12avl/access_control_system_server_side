@@ -30,7 +30,7 @@ public class WebServer {
   public WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
-      logger.info(
+      logger.debug(
               "Server started.\nListening for connections on port : "
                       + PORT + " ...\n");
       // we listen until user halts server execution
@@ -40,7 +40,7 @@ public class WebServer {
         // create dedicated thread to manage the client connection
       }
     } catch (IOException e) {
-      logger.info("Server Connection error : " + e.getMessage());
+      logger.error("Server Connection error : " + e.getMessage());
     }
   }
 
@@ -71,7 +71,7 @@ public class WebServer {
         String input = in.readLine();
         // we parse the request with a string tokenizer
 
-        logger.info("sockedthread : " + input);
+        logger.debug("sockedthread : " + input);
 
         StringTokenizer parse = new StringTokenizer(input);
 
@@ -79,13 +79,13 @@ public class WebServer {
         String method = parse.nextToken().toUpperCase();
 
         if (!method.equals("GET")) {
-          logger.info("501 Not Implemented : " + method + " method.");
+          logger.error("501 Not Implemented : " + method + " method.");
         } else {
           // what comes after "localhost:8080"
           resource = parse.nextToken();
-          logger.info("input " + input);
-          logger.info("method " + method);
-          logger.info("resource " + resource);
+          logger.debug("input " + input);
+          logger.debug("method " + method);
+          logger.debug("resource " + resource);
 
           parse = new StringTokenizer(resource, "/[?]=&");
           int i = 0;
@@ -95,7 +95,7 @@ public class WebServer {
 
           while (parse.hasMoreTokens()) {
             tokens[i] = parse.nextToken();
-            logger.info(i + " " + tokens[i]);
+            logger.warn(i + " " + tokens[i]);
             i++;
           }
 
@@ -103,17 +103,17 @@ public class WebServer {
           Request request = makeRequest(tokens);
           if (request != null) {
             String typeRequest = tokens[0];
-            logger.info("created request " + typeRequest + " "
+            logger.debug("created request " + typeRequest + " "
                     + request);
             request.process();
-            logger.info("processed request " + typeRequest + " "
+            logger.debug("processed request " + typeRequest + " "
                     + request);
 
             // Make the answer as a JSON string, to be sent to the Javascript
             //  client
             String answer = makeJsonAnswer(request);
 
-            logger.info("answer\n" + answer);
+            logger.debug("answer\n" + answer);
             // Here we send the response to the client
             out.println(answer);
             out.flush(); // flush character output stream buffer
@@ -124,18 +124,21 @@ public class WebServer {
         out.close();
         insocked.close(); // we close socket connection
       } catch (Exception e) {
-        logger.info("Exception : " + e);
+        logger.error("Exception : " + e);
       }
     }
 
     private Request makeRequest(final String[] tokens) {
       // always return request because it contains the answer for the
       //  Javascript client
-      System.out.print("tokens : ");
+      String tokenString = "tokens : ";
+      StringBuilder tokenListString = new StringBuilder();
+
       for (String token : tokens) {
-        System.out.print(token + ", ");
+        tokenListString.append(token).append(", ");
       }
-      System.out.println();
+
+      logger.debug(tokenString + tokenListString);
 
       Request request;
       // assertions below evaluated to false won't stop the webserver, just

@@ -24,7 +24,7 @@ public class Unlocked extends DoorState {
             this.door.setClosed(false);
         } else {
 
-            logger.info("Can't open door " + this.door.getId()
+            logger.warn("Can't open door " + this.door.getId()
                 + " because it's already " + "open");
         }
     }
@@ -32,7 +32,7 @@ public class Unlocked extends DoorState {
     @Override
     public void close() {
         if (this.door.isClosed()) {
-            logger.info("Can't close door " + door.getId()
+            logger.warn("Can't close door " + door.getId()
                 + " because it's already " + "closed");
         } else {
             this.door.setClosed(true);
@@ -50,7 +50,7 @@ public class Unlocked extends DoorState {
     }
     @Override
     public void unlockShortly() {
-        logger.info("Can't unlock shortly the door " + door.getId()
+        logger.warn("Can't unlock shortly the door " + door.getId()
             + " because it's already unlocked");
 
     }

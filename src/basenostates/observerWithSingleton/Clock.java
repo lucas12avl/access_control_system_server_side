@@ -24,7 +24,7 @@ public class Clock extends Observable{
 
   public static Clock getInstance(){
 
-     if (instance ==null){
+     if (instance == null){
        instance =  new Clock();
      }
     return instance;
