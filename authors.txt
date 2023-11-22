@@ -40,4 +40,6 @@ After that I modified the class DirectoryUserGroups by initializing the differen
 Also I modified the class user  by adding the three methods that check if a user is authorized or not.
 to do the checks I created a class times that has global attributes with the specific requirements of time for employees and managers.
 Finally I end a method from the RequestReader class that checks tif a user is authorized or not.
+I helped using the checkstyle rules and alo helped with comments in some of the classes of the code, describing how they actually work and also
+writing some specifications that would help other people understanding the code.
 
