@@ -32,12 +32,22 @@ I implemented logback into the project. It creates a html file into the /logs
     appends each log into that file.
 
 Lucas:
+1st Milestone
 I implemented all the areas design, first of all, i removed the DirectoryDoors class and I created the new Directory area.
 This new class contains the node root that contains all the others areas 'representing a tree'.
 with this implemented, I created the new abstract class 'Area' where I have had to create some abstract methods like getDoorsGivingAcces and findAreaById.
 this class extends two new classes that I already make: Partition(contains an array of other areas) and Space(contains an array of the different doors that gives acces to an Area)
 in both classes I implemented the abstract methods, his attributes and constructors.
 Also I have modified the Door constructor so that when creating a door the areas it connects are needed to add the door to the area that gives access
+
+2nd Milestone
+I have implemented the entire unlock shortly mechanic, created the classes unlocked shortly, clock, observer and observable.
+I started by implementing the observer pattern until I was sure it worked correctly, and then I implemented the singleton
+pattern to ensure that there was only one instance of the clock in the entire program. I also modified some minor details in
+classes like door and states so that everything described above worked correctly. Lastly, I added all the classes and functions
+I created for unlock shortly (observer + singleton) to the UML diagram and made some minor changes to other parts of the diagram.
+
+
 
 Alvaro:
 I Implemented all the design of the permissions and schedulers of all the groups, including the creation of the groups and the declaration of all of them.
