@@ -19,7 +19,7 @@ public final class DirectoryAreas { // Creates the various areas and doors
 
  /* space(id + array<doors>) , partition(id + array areas)
  * This function focuses on the creation and selection of each area and
- *   partition of the ACS.
+ * partition of the ACS.
  * Initially it creates and selects each space, then it is put inside an Area.
  * This happens for floor 1, ground floor, and basement.
  */
@@ -111,7 +111,7 @@ public final class DirectoryAreas { // Creates the various areas and doors
  public static Area findAreaById(final String nameArea) {
   Area result = null;
 
-  if (rootArea != null) { //look if the root is null
+  if (rootArea != null) {
    result = rootArea.findAreaById(nameArea);
   }
 
