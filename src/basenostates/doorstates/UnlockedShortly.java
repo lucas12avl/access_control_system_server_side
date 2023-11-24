@@ -16,7 +16,8 @@ public class UnlockedShortly extends DoorState implements Observer {
  checks if the door is closed, if it's closed, returns the door to the locked
  state if not, it will put the propped until it closes
  */
-  private static final Logger logger = LoggerFactory.getLogger(UnlockedShortly.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(
+          UnlockedShortly.class);
   private final int period = 10;
   private int ticks = 0;
 
@@ -32,7 +33,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (this.door.isClosed()) {
       this.door.setClosed(false);
     } else {
-      logger.warn("Can't open door " + this.door.getId()
+      LOGGER.warn("Can't open door " + this.door.getId()
           + " because it's already " + "open");
     }
   }
@@ -40,7 +41,7 @@ public class UnlockedShortly extends DoorState implements Observer {
   @Override
   public void close() {
     if (this.door.isClosed()) {
-      logger.warn("Can't close door " + door.getId()
+      LOGGER.warn("Can't close door " + door.getId()
           + " because it's already " + "closed");
     } else {
       this.door.setClosed(true);
@@ -48,15 +49,15 @@ public class UnlockedShortly extends DoorState implements Observer {
   }
 
   @Override
-  public void lock(){
-    logger.warn("Can't lock de door"
+  public void lock() {
+    LOGGER.warn("Can't lock de door"
             + door.getId()
             + "manually because it will be closed automatically after 10s ");
   }
 
   @Override
-  public void unlock(){
-    logger.warn("Can't unlock de door"
+  public void unlock() {
+    LOGGER.warn("Can't unlock de door"
             + door.getId()
             + "manually because it will remain unlocked during 10s ");
 
@@ -64,11 +65,11 @@ public class UnlockedShortly extends DoorState implements Observer {
 
   @Override
   public void unlockShortly() {
-    logger.info("Door already unlocked shortly.");
+    LOGGER.info("Door already unlocked shortly.");
   }
 
   @Override //observer
-  public void update(Observable ob, Object time) {
+  public void update(final Observable ob, final Object time) {
     ticks++;
 
     if (ticks >= period) {
@@ -77,7 +78,7 @@ public class UnlockedShortly extends DoorState implements Observer {
       } else {
         door.setState(new Propped(door));
       }
-      logger.debug("\n \n Current Tick Amount = " + ticks );
+      LOGGER.debug("\n \n Current Tick Amount = " + ticks);
 
 
       Clock.getInstance().deleteObserver(this);

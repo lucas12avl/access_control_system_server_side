@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory;
 */
 public class Unlocked extends DoorState {
 
-    private static final Logger logger = LoggerFactory.getLogger(Unlocked.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+            Unlocked.class);
     public Unlocked(final Door door) {
         super(door);
         this.setStateName(States.UNLOCKED);
@@ -24,7 +25,7 @@ public class Unlocked extends DoorState {
             this.door.setClosed(false);
         } else {
 
-            logger.warn("Can't open door " + this.door.getId()
+            LOGGER.warn("Can't open door " + this.door.getId()
                 + " because it's already " + "open");
         }
     }
@@ -32,7 +33,7 @@ public class Unlocked extends DoorState {
     @Override
     public void close() {
         if (this.door.isClosed()) {
-            logger.warn("Can't close door " + door.getId()
+            LOGGER.warn("Can't close door " + door.getId()
                 + " because it's already " + "closed");
         } else {
             this.door.setClosed(true);
@@ -50,7 +51,7 @@ public class Unlocked extends DoorState {
     }
     @Override
     public void unlockShortly() {
-        logger.warn("Can't unlock shortly the door " + door.getId()
+        LOGGER.warn("Can't unlock shortly the door " + door.getId()
             + " because it's already unlocked");
 
     }

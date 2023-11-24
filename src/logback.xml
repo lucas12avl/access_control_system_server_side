@@ -55,14 +55,13 @@
         <appender-ref ref="STDOUT"/>
     </logger>
     -->
-
     <!-- 2nd milestone -->
-    <logger name="basenostates.milestone2" level="debug">
+    <logger name="basenostates.milestone2" level="warn">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="basenostates.observerWithSingleton" level="debug">
+    <logger name="basenostates.observerWithSingleton" level="warn">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </logger>

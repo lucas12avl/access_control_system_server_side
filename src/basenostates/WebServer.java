@@ -1,6 +1,5 @@
 package basenostates;
 
-import basenostates.doorstates.Locked;
 import basenostates.requests.Request;
 import basenostates.requests.RequestReader;
 import basenostates.requests.RequestRefresh;
@@ -22,15 +21,15 @@ import java.util.StringTokenizer;
 // https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
 // http://www.jcgonzalez.com/java-socket-mini-server-http-example
 public class WebServer {
-  private static final Logger logger = LoggerFactory.getLogger(WebServer.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(WebServer.class);
   private static final int PORT = 8080; // port to listen connection
-  private static final DateTimeFormatter formatter =
+  private static final DateTimeFormatter FORMATTER =
           DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
   public WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
-      logger.debug(
+      LOGGER.debug(
               "Server started.\nListening for connections on port : "
                       + PORT + " ...\n");
       // we listen until user halts server execution
@@ -40,7 +39,7 @@ public class WebServer {
         // create dedicated thread to manage the client connection
       }
     } catch (IOException e) {
-      logger.error("Server Connection error : " + e.getMessage());
+      LOGGER.error("Server Connection error : " + e.getMessage());
     }
   }
 
@@ -49,7 +48,7 @@ public class WebServer {
     // as an inner class, SocketThread sees WebServer attributes
     private final Socket insocked; // client connection via Socket class
 
-    SocketThread(Socket insocket) {
+    SocketThread(final Socket insocket) {
       this.insocked = insocket;
       this.start();
     }
@@ -71,7 +70,7 @@ public class WebServer {
         String input = in.readLine();
         // we parse the request with a string tokenizer
 
-        logger.debug("sockedthread : " + input);
+        LOGGER.debug("sockedthread : " + input);
 
         StringTokenizer parse = new StringTokenizer(input);
 
@@ -79,13 +78,13 @@ public class WebServer {
         String method = parse.nextToken().toUpperCase();
 
         if (!method.equals("GET")) {
-          logger.error("501 Not Implemented : " + method + " method.");
+          LOGGER.error("501 Not Implemented : " + method + " method.");
         } else {
           // what comes after "localhost:8080"
           resource = parse.nextToken();
-          logger.debug("input " + input);
-          logger.debug("method " + method);
-          logger.debug("resource " + resource);
+          LOGGER.debug("input " + input);
+          LOGGER.debug("method " + method);
+          LOGGER.debug("resource " + resource);
 
           parse = new StringTokenizer(resource, "/[?]=&");
           int i = 0;
@@ -95,7 +94,7 @@ public class WebServer {
 
           while (parse.hasMoreTokens()) {
             tokens[i] = parse.nextToken();
-            logger.warn(i + " " + tokens[i]);
+            LOGGER.debug(i + " " + tokens[i]);
             i++;
           }
 
@@ -103,17 +102,17 @@ public class WebServer {
           Request request = makeRequest(tokens);
           if (request != null) {
             String typeRequest = tokens[0];
-            logger.debug("created request " + typeRequest + " "
+            LOGGER.debug("created request " + typeRequest + " "
                     + request);
             request.process();
-            logger.debug("processed request " + typeRequest + " "
+            LOGGER.debug("processed request " + typeRequest + " "
                     + request);
 
             // Make the answer as a JSON string, to be sent to the Javascript
             //  client
             String answer = makeJsonAnswer(request);
 
-            logger.debug("answer\n" + answer);
+            LOGGER.debug("answer\n" + answer);
             // Here we send the response to the client
             out.println(answer);
             out.flush(); // flush character output stream buffer
@@ -124,7 +123,7 @@ public class WebServer {
         out.close();
         insocked.close(); // we close socket connection
       } catch (Exception e) {
-        logger.error("Exception : " + e);
+        LOGGER.error("Exception : " + e);
       }
     }
 
@@ -138,7 +137,7 @@ public class WebServer {
         tokenListString.append(token).append(", ");
       }
 
-      logger.debug(tokenString + tokenListString);
+      LOGGER.debug(tokenString + tokenListString);
 
       Request request;
       // assertions below evaluated to false won't stop the webserver, just
@@ -174,7 +173,7 @@ public class WebServer {
     private RequestReader makeRequestReader(final String[] tokens) {
       String credential = tokens[2];
       String action = tokens[4];
-      LocalDateTime dateTime = LocalDateTime.parse(tokens[6], formatter);
+      LocalDateTime dateTime = LocalDateTime.parse(tokens[6], FORMATTER);
       String doorId = tokens[8];
       return new RequestReader(credential, action, dateTime, doorId);
     }
@@ -182,7 +181,7 @@ public class WebServer {
     private RequestArea makeRequestArea(final String[] tokens) {
       String credential = tokens[2];
       String action = tokens[4];
-      LocalDateTime dateTime = LocalDateTime.parse(tokens[6], formatter);
+      LocalDateTime dateTime = LocalDateTime.parse(tokens[6], FORMATTER);
       String areaId = tokens[8];
       return new RequestArea(credential, action, dateTime, areaId);
     }

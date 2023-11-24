@@ -21,8 +21,8 @@ public class RequestReader implements Request {
   private String doorStateName;
   private boolean doorClosed;
 
-  public RequestReader(final String credential, final String action, final LocalDateTime now,
-                       final String doorId) {
+  public RequestReader(final String credential, final String action,
+                       final LocalDateTime now, final String doorId) {
     this.credential = credential;
     this.action = action;
     this.doorId = doorId;
