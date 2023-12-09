@@ -2,7 +2,7 @@ package basenostates.areaspaces;
 
 
 import basenostates.Door;
-
+import org.json.JSONObject;
 import java.util.ArrayList;
 
 // The composite programming pattern was used here
@@ -28,7 +28,6 @@ public abstract class Area {
 
  public abstract ArrayList<Door> getDoorsGivingAccess();
 
-
-
+ public abstract JSONObject toJson(int depth);
 
 }

@@ -3,6 +3,9 @@ package basenostates.areaspaces;
 
 import basenostates.Door;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Space extends Area {
@@ -32,5 +35,17 @@ public class Space extends Area {
 
   public void addDoorsToSpace(final Door puerta) {
     doors.add(puerta);
+  }
+
+  public JSONObject toJson(int depth) { // depth not used here
+    JSONObject json = new JSONObject();
+    json.put("class", "space");
+    json.put("id", id);
+    JSONArray jsonDoors = new JSONArray();
+    for (Door d : doorsGivingAccess) {
+      jsonDoors.put(d.toJson());
+    }
+    json.put("access_doors", jsonDoors);
+    return json;
   }
 }

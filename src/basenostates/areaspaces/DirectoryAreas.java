@@ -114,6 +114,7 @@ public final class DirectoryAreas { // Creates the various areas and doors
    result = rootArea.findAreaById(nameArea);
   }
 
+
   return result;
  }
 

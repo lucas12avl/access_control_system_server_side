@@ -2,6 +2,9 @@ package basenostates.areaspaces;
 
 import basenostates.Door;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Partition extends Area {
@@ -30,10 +33,12 @@ public class Partition extends Area {
   }
 
   public Area findAreaById(final String id) {
+
     // if the id matches the name on the area, we have to return the area
     if (this.areaId.equals(id)) {
       return this;
     }
+
     // If not, we go through the child areas and search recursively
     for (Area area : areas) {
       Area result = area.findAreaById(id);
@@ -44,5 +49,21 @@ public class Partition extends Area {
     }
     // if area not found, return null
     return null;
+  }
+
+  public JSONObject toJson(int depth) {
+    // for depth=1 only the root and children,
+    // for recursive = all levels use Integer.MAX_VALUE
+    JSONObject json = new JSONObject();
+    json.put("class", "partition");
+    json.put("id", id);
+    JSONArray jsonAreas = new JSONArray();
+    if (depth > 0) {
+      for (Area a : areas) {
+        jsonAreas.put(a.toJson(depth - 1));
+      }
+      json.put("areas", jsonAreas);
+    }
+    return json;
   }
 }
