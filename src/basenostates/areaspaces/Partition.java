@@ -56,7 +56,7 @@ public class Partition extends Area {
     // for recursive = all levels use Integer.MAX_VALUE
     JSONObject json = new JSONObject();
     json.put("class", "partition");
-    json.put("id", id);
+    json.put("id", areaId);
     JSONArray jsonAreas = new JSONArray();
     if (depth > 0) {
       for (Area a : areas) {

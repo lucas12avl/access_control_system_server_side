@@ -110,6 +110,11 @@ public final class DirectoryAreas { // Creates the various areas and doors
  public static Area findAreaById(final String nameArea) {
   Area result = null;
 
+  if (nameArea.equals("ROOT")) { //see 2.3 milestone 3
+   result = rootArea;
+   return result;
+  }
+
   if (rootArea != null) {
    result = rootArea.findAreaById(nameArea);
   }
@@ -132,6 +137,11 @@ public final class DirectoryAreas { // Creates the various areas and doors
   }
   LOGGER.error("door with id " + id + " not found");
   return null; // otherwise we get a Java error
+ }
+
+
+ public static Area getInstance(){
+  return rootArea;
  }
 
 

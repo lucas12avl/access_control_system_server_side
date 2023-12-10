@@ -40,9 +40,9 @@ public class Space extends Area {
   public JSONObject toJson(int depth) { // depth not used here
     JSONObject json = new JSONObject();
     json.put("class", "space");
-    json.put("id", id);
+    json.put("id", areaId);
     JSONArray jsonDoors = new JSONArray();
-    for (Door d : doorsGivingAccess) {
+    for (Door d : doors) { //this doors are the unic that gives acces to the space
       jsonDoors.put(d.toJson());
     }
     json.put("access_doors", jsonDoors);

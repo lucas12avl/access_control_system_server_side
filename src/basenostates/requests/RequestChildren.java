@@ -27,7 +27,7 @@ public class RequestChildren implements Request{
     }
 
     public void process() {
-        // TODO What would be the equivalent of getInstance?
+        // TODO What would be the equivalent of getInstance? -- maybe is the unic instance that we have: the root area to search the area with the given areaId
         Area area = DirectoryAreas.getInstance().findAreaById(areaId);
         jsonTree = area.toJson(1);
     }
