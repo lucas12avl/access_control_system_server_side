@@ -43,7 +43,7 @@ public class Space extends Area {
     json.put("id", areaId);
     JSONArray jsonDoors = new JSONArray();
     for (Door d : doors) { //this doors are the unic that gives acces to the space
-      jsonDoors.put(d.toJson());
+      jsonDoors.put(d.toJson()); // Door{, id='D1', closed=true, state=unlocked}
     }
     json.put("access_doors", jsonDoors);
     return json;

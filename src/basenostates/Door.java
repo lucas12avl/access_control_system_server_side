@@ -117,6 +117,7 @@ public class Door {
     json.put("id", id);
     json.put("state", getStateName());
     json.put("closed", closed);
+    json.put("from", this.getFrom().getAreaId());
     return json;
   }
 }
