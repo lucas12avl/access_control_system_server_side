@@ -28,9 +28,6 @@ To run the project, load the ACU project in IntelliJ IDEA and execute `Main.java
 ## Testing
 Prepare a list of test cases to demonstrate the functionality of the implemented features. Use the simulator to interact with the ACU server.
 
-## Contributions
-Please list the contributions of each team member in the `autors.txt` file, detailing who did what. This is important for grading and authorship verification.
-
 ---
 
 This README provides an overview of the first and second milestones of the ACS project. For more detailed information, please see the project documentation.
