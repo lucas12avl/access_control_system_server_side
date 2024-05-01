@@ -23,11 +23,10 @@ This project aims to design and implement a prototype of an Access Control Syste
 - **SLF4J and Logback**: Libraries used for logging.
 
 ## Running the Project
-To run the project, load the ACU project in IntelliJ IDEA and execute `Main.java`. Ensure the run configuration is set with enabled assertions (`-ea` flag).
-
-## Testing
-Prepare a list of test cases to demonstrate the functionality of the implemented features. Use the simulator to interact with the ACU server.
-
+1. Clone the repository to your local machine.
+2. Open the project with your Java IDE
+3. Execute `src/basenostates/usergroups/Main.java`. Ensure the run configuration is set with enabled assertions (`-ea` flag).
+4. Launch the src/simulator/building.html file in any browser to start using the ACS server side
 ---
 
-This README provides an overview of the first and second milestones of the ACS project. For more detailed information, please see the project documentation.
+For more detailed information, please see the project documentation (https://github.com/lucas12avl/access_control_system_server_side/blob/master/access_control_system-Documentation.pdf).
