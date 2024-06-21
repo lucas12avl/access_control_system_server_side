@@ -1,5 +1,5 @@
 # Access Control System (ACS) Project - Server Side
-![First look at server side ACS html](./project%20images/main.png)
+
 
 ## Introduction
 This project aims to design and implement a prototype of an Access Control System (ACS) as part of the software design course. The ACS manages physical security by controlling who has access to an area at any given time of any building map.
