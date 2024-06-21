@@ -5,8 +5,8 @@
 This project aims to design and implement a prototype of an Access Control System (ACS) as part of the software design course. The ACS manages physical security by controlling who has access to an area at any given time of any building map.
 
 ## First Milestone: Functionality
-- **Locked and Unlocked States**: Introduced the basic door states of Locked and Unlocked, allowing doors to be locked or unlocked by any system user-
-- **Unlock shortly and Propped State:**: Introduced some more complex states using Behavioural Patterns like Observer, visitor, State and others.
+- **Locked and Unlocked States**: Introduced the basic door states of Locked and Unlocked, allowing doors to be locked or unlocked by any system user. The user also can lock/unlock doors by pressing the name of a room and click *request*, also can do the same with the entire building pressing *building*
+- **Unlock shortly and Propped State**: Introduced some more complex states using Behavioural Patterns like Observer, visitor, State and others. This state unlcoks a locked door by 10 seconds, if it's still open then the door gets the propped state.
 - **Door States Diagram**: Implemented a UML state diagram to represent the transitions between door states.
 - **User Interface Simulator**: Developed a simulator in the form of a web page to test the ACU server and later the mobile app.
 
