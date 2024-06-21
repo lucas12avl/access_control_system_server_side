@@ -17,6 +17,9 @@ This project aims to design and implement a prototype of an Access Control Syste
 - **Singleton Design Pattern**: Applied the Singleton design pattern to classes that should only have one instance during execution.
 - **Refactoring**: Moved traversal methods out of partition and space classes to make the design more extensible.
 
+## Results
+![few features demostration](./project%20images/features.gif)
+
 ## Development Tools
 - **IntelliJ IDEA**: The chosen IDE for the project development.
 - **PlantUML**: Used for creating UML class and state diagrams.
